@@ -12,7 +12,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb", {
 });
 
 // Defines some basic variables
-let anchorsArray = ["www.xhamster.com"]; // Define the start if required
+let anchorsArray = ["www.xnxx.com"]; // Define the start if required
 // Starts crawling
 function round() {
    if(anchorsArray.length >= 1) {

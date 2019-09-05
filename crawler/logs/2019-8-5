@@ -74,3 +74,62 @@
 18-57-32: Error: getaddrinfo ENOTFOUND vps.lukerieffs.com
 19-9-52: Error: getaddrinfo ENOTFOUND static.npsmjs.com
 19-22-20: TypeError: Cannot read property 'substring' of undefined
+20-24-22: Error: certificate has expired
+20-24-28: Error: certificate has expired
+20-24-41: Error: certificate has expired
+20-24-47: Error: certificate has expired
+20-24-58: Error: getaddrinfo ENOTFOUND www.eu.leagueoflegends.com
+20-24-58: Error: getaddrinfo ENOTFOUND www.eu.leagueoflegends.com
+20-25-14: Error: getaddrinfo ENOTFOUND www.euw.leagueoflegends.com
+20-25-14: Error: getaddrinfo ENOTFOUND www.euw.leagueoflegends.com
+20-25-26: Error: getaddrinfo ENOTFOUND www.play.na.leagueoflegends.com
+20-25-26: Error: getaddrinfo ENOTFOUND www.play.na.leagueoflegends.com
+20-34-51: TypeError: Cannot read property 'substring' of undefined
+20-35-54: TypeError: Cannot read property 'substring' of undefined
+20-35-55: TypeError: Cannot read property 'substring' of undefined
+20-35-56: TypeError: Cannot read property 'substring' of undefined
+20-35-57: TypeError: Cannot read property 'substring' of undefined
+20-35-58: TypeError: Cannot read property 'substring' of undefined
+20-35-59: TypeError: Cannot read property 'substring' of undefined
+20-36-0: TypeError: Cannot read property 'substring' of undefined
+20-36-1: TypeError: Cannot read property 'substring' of undefined
+20-36-1: TypeError: Cannot read property 'substring' of undefined
+20-36-2: TypeError: Cannot read property 'substring' of undefined
+20-36-3: TypeError: Cannot read property 'substring' of undefined
+20-36-4: TypeError: Cannot read property 'substring' of undefined
+20-36-5: TypeError: Cannot read property 'substring' of undefined
+20-36-6: TypeError: Cannot read property 'substring' of undefined
+20-36-7: TypeError: Cannot read property 'substring' of undefined
+20-36-8: TypeError: Cannot read property 'substring' of undefined
+20-36-9: TypeError: Cannot read property 'substring' of undefined
+20-36-10: TypeError: Cannot read property 'substring' of undefined
+20-36-11: TypeError: Cannot read property 'substring' of undefined
+20-36-12: TypeError: Cannot read property 'substring' of undefined
+20-36-13: TypeError: Cannot read property 'substring' of undefined
+20-36-14: TypeError: Cannot read property 'substring' of undefined
+20-36-15: TypeError: Cannot read property 'substring' of undefined
+20-36-16: TypeError: Cannot read property 'substring' of undefined
+20-36-17: TypeError: Cannot read property 'substring' of undefined
+20-36-17: TypeError: Cannot read property 'substring' of undefined
+20-36-18: TypeError: Cannot read property 'substring' of undefined
+20-36-20: TypeError: Cannot read property 'substring' of undefined
+20-36-20: TypeError: Cannot read property 'substring' of undefined
+20-36-21: TypeError: Cannot read property 'substring' of undefined
+20-36-22: TypeError: Cannot read property 'substring' of undefined
+20-36-23: TypeError: Cannot read property 'substring' of undefined
+20-36-24: TypeError: Cannot read property 'substring' of undefined
+20-36-25: TypeError: Cannot read property 'substring' of undefined
+20-36-27: TypeError: Cannot read property 'substring' of undefined
+20-36-28: TypeError: Cannot read property 'substring' of undefined
+20-36-30: TypeError: Cannot read property 'substring' of undefined
+20-36-30: TypeError: Cannot read property 'substring' of undefined
+20-36-31: TypeError: Cannot read property 'substring' of undefined
+20-36-32: TypeError: Cannot read property 'substring' of undefined
+20-36-33: TypeError: Cannot read property 'substring' of undefined
+20-36-34: TypeError: Cannot read property 'substring' of undefined
+20-36-35: TypeError: Cannot read property 'substring' of undefined
+20-36-36: TypeError: Cannot read property 'substring' of undefined
+20-36-37: TypeError: Cannot read property 'substring' of undefined
+20-36-39: TypeError: Cannot read property 'substring' of undefined
+20-36-40: TypeError: Cannot read property 'substring' of undefined
+20-42-36: TypeError: Cannot read property 'substring' of undefined

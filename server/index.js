@@ -1,7 +1,8 @@
 // The modules
-const mongoose = require("mongoose");
-const express = require("express");
-const BodyParser = require("body-parser");
+const mongoose      = require("mongoose");
+const express       = require("express");
+const cors          = require("cors");
+const BodyParser    = require("body-parser");
 // Connects mongoose
 mongoose.connect("mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb", {
     useNewUrlParser: true,
@@ -9,6 +10,8 @@ mongoose.connect("mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb", {
 });
 // Initializes
 const app = express();
+app.use(express.static("public"));
+app.use(cors());
 app.use(BodyParser.urlencoded({
     extended: false
 }));
