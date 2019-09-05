@@ -1,7 +1,7 @@
 // The modules
 const https     = require("https");
 const http      = require("http");
-const urlp       = require("url");
+const urlp      = require("url")
 // The source files
 const storeErr  = require("./store-err");
 // The functions
@@ -46,6 +46,7 @@ function getHTTPS(url, before, cb) {
             cb(body);
         });
     }).on("error", function (error) {
+        request.abort();
         storeErr.appendFile(error);
         cb(false);
     }).on("timeout", function () {
@@ -66,6 +67,7 @@ function getHTTP(url, before, cb) {
             cb(body);
         })
     }).on("error", function (error) {
+        request.abort();
         storeErr.appendFile(error);
         cb(false);
     }).on("timeout", function () {
@@ -94,7 +96,7 @@ function createConfigObject(url, timeout, port, before) {
         path: url.pathname,
         port: port,
         timeout: timeout,
-        headers: { 'User-Agent': 'Mozilla/5.0' }
+        headers: { 'User-Agent': `FannstBot/v1.0 (LukeCrawler)` }
     };
 }
 // Exports

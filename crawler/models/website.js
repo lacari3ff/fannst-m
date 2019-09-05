@@ -5,12 +5,13 @@ const Schema = mongoose.Schema;
 const websiteSchema = Schema({
     title: String,
     description: String,
-    keywords: String,
+    keywords: Array,
     author: String,
     copyright: String,
     viewport: String,
     url: String,
-    clicks: Number
+    clicks: Number,
+    category: Number
 });
 // Exports the model
-module.exports = mongoose.model("website", websiteSchema);
+module.exports = mongoose.model("Website", websiteSchema);

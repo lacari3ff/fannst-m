@@ -11,3 +11,93 @@
 9-16-14: ReferenceError: images is not defined
 9-16-14: ReferenceError: images is not defined
 9-16-14: ReferenceError: images is not defined
+11-25-33: Error: socket hang up
+11-26-39: Error: socket hang up
+11-27-9: Error: socket hang up
+11-27-41: Error: socket hang up
+11-28-49: Error: socket hang up
+11-29-7: Error: socket hang up
+11-29-43: Error: socket hang up
+11-30-19: Error: socket hang up
+11-56-9: Error: socket hang up
+11-56-9: Error: socket hang up
+12-14-39: Error: socket hang up
+12-14-39: ValidationError: keywords: Cast to String failed for value "[ 'toegang', 'geweigerd', 'roc', 'nijmegen' ]" at path "keywords"
+12-14-39: ValidationError: keywords: Cast to String failed for value "[ 'toegang', 'geweigerd', 'roc', 'nijmegen' ]" at path "keywords"
+12-15-30: Error: socket hang up
+12-15-30: ValidationError: keywords: Cast to String failed for value "[ 'toegang', 'geweigerd', 'roc', 'nijmegen' ]" at path "keywords"
+12-15-30: ValidationError: keywords: Cast to String failed for value "[ 'toegang', 'geweigerd', 'roc', 'nijmegen' ]" at path "keywords"
+12-16-33: Error: socket hang up
+12-16-34: ValidationError: keywords: Cast to String failed for value "[ 'toegang', 'geweigerd', 'roc', 'nijmegen' ]" at path "keywords"
+12-16-34: ValidationError: keywords: Cast to String failed for value "[ 'toegang', 'geweigerd', 'roc', 'nijmegen' ]" at path "keywords"
+12-16-39: ValidationError: keywords: Cast to String failed for value "[ 'google' ]" at path "keywords"
+12-16-58: ValidationError: keywords: Cast to String failed for value "[ 'google' ]" at path "keywords"
+12-17-0: ValidationError: keywords: Cast to String failed for value "[ 'google' ]" at path "keywords"
+12-17-8: ValidationError: keywords: Cast to String failed for value "[ 'google' ]" at path "keywords"
+12-17-13: ValidationError: keywords: Cast to String failed for value "[ 'google' ]" at path "keywords"
+12-17-35: ValidationError: keywords: Cast to String failed for value "[ 'google' ]" at path "keywords"
+12-18-24: ValidationError: keywords: Cast to String failed for value "[ 'google' ]" at path "keywords"
+12-18-58: ValidationError: keywords: Cast to String failed for value "[ 'moved', 'permanently' ]" at path "keywords"
+12-20-43: ValidationError: keywords: Cast to String failed for value "[ 'moved', 'permanently' ]" at path "keywords"
+12-38-38: TypeError: pornKeywords.match is not a function
+12-45-22: TypeError: text.test is not a function
+12-45-39: TypeError: pornKeywords.test is not a function
+13-27-38: Error: Client network socket disconnected before secure TLS connection was established
+13-28-6: Error: Client network socket disconnected before secure TLS connection was established
+13-29-7: Error: Client network socket disconnected before secure TLS connection was established
+14-21-39: Error: connect ECONNREFUSED 127.0.0.1:443
+14-22-28: Error: connect ECONNREFUSED 127.0.0.1:443
+14-23-5: Error: connect ECONNREFUSED 127.0.0.1:443
+14-23-34: Error: connect ECONNREFUSED 127.0.0.1:443
+14-23-47: Error: connect ECONNREFUSED 127.0.0.1:443
+14-24-41: Error: connect ECONNREFUSED 127.0.0.1:443
+14-24-51: Error: connect ECONNREFUSED 127.0.0.1:443
+14-25-40: Error: connect ECONNREFUSED 127.0.0.1:443
+14-26-9: Error: connect ECONNREFUSED 127.0.0.1:443
+14-26-38: Error: connect ECONNREFUSED 127.0.0.1:443
+14-26-58: Error: socket hang up
+14-27-9: Error: getaddrinfo ENOTFOUND localhosst
+14-27-11: Error: getaddrinfo ENOTFOUND localhosst
+14-31-9: Error: connect ECONNREFUSED 127.0.0.1:443
+14-31-15: Error: socket hang up
+14-31-23: Error: connect ECONNREFUSED 127.0.0.1:443
+14-31-29: Error: socket hang up
+14-31-34: Error: socket hang up
+14-31-34: Error: socket hang up
+14-35-40: Error: connect ECONNREFUSED 127.0.0.1:443
+14-36-8: Error: connect ECONNREFUSED 127.0.0.1:443
+14-36-24: Error: connect ECONNREFUSED 127.0.0.1:443
+14-36-43: Error: connect ECONNREFUSED 127.0.0.1:443
+14-37-4: Error: connect ECONNREFUSED 127.0.0.1:443
+14-37-18: Error: connect ECONNREFUSED 127.0.0.1:443
+14-37-45: Error: connect ECONNREFUSED 127.0.0.1:443
+14-37-45: TypeError: Cannot read property 'includes' of undefined
+14-38-16: Error: connect ECONNREFUSED 127.0.0.1:443
+14-38-16: TypeError: Cannot read property 'includes' of undefined
+14-38-51: Error: connect ECONNREFUSED 127.0.0.1:443
+14-38-52: TypeError: Cannot read property 'includes' of undefined
+14-39-38: Error: connect ECONNREFUSED 127.0.0.1:443
+14-39-38: TypeError: Cannot read property 'includes' of undefined
+14-41-0: Error: connect ECONNREFUSED 127.0.0.1:443
+14-41-0: TypeError: anchorIndex.slice is not a function
+14-41-15: Error: connect ECONNREFUSED 127.0.0.1:443
+14-41-17: Error: connect ECONNREFUSED 127.0.0.1:443
+14-41-19: Error: connect ECONNREFUSED 127.0.0.1:443
+14-41-30: Error: connect ECONNREFUSED 127.0.0.1:443
+14-41-32: Error: connect ECONNREFUSED 127.0.0.1:443
+14-41-34: Error: connect ECONNREFUSED 127.0.0.1:443
+14-41-57: Error: connect ECONNREFUSED 127.0.0.1:443
+14-41-57: TypeError: Cannot read property 'includes' of undefined
+14-42-57: Error: connect ECONNREFUSED 127.0.0.1:443
+14-43-19: Error: connect ECONNREFUSED 127.0.0.1:443
+14-45-23: Error: connect ECONNREFUSED 127.0.0.1:443
+14-47-33: Error: connect ECONNREFUSED 127.0.0.1:443
+14-47-35: Error: connect ECONNREFUSED 127.0.0.1:80
+14-52-59: Error: connect ECONNREFUSED 127.0.0.1:443
+14-53-1: Error: connect ECONNREFUSED 127.0.0.1:80
+14-56-18: Error: connect ECONNREFUSED 127.0.0.1:443
+14-56-20: Error: connect ECONNREFUSED 127.0.0.1:80
+14-58-5: Error: connect ECONNREFUSED 127.0.0.1:443
+14-58-7: Error: connect ECONNREFUSED 127.0.0.1:80
+14-58-25: Error: connect ECONNREFUSED 127.0.0.1:443
+14-58-27: Error: connect ECONNREFUSED 127.0.0.1:80

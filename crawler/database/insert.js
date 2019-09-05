@@ -1,17 +1,48 @@
 // Modules
 const mongoose      = require("mongoose");
+const crypto        = require("crypto");
+// The models
+const Website       = require("../models/website");
 const Image         = require("../models/image");
 // the Src
-const storeErr      = require("./src/store-err");
+const storeErr      = require("../src/store-err");
 // The website insert function
+async function insertSite(site) {
+    if(site.url !== null && site.url !== "") {
+        await Website.findOne({
+            url: site.url
+        }).then(async function (product) {
+            if(product) {
+                Website.updateOne({
+                    _id: product._id
+                }, {
+                    $set: {
+                        title: site.title,
+                        description: site.description,
+                        keywords: site.keywords,
+                        author: site.author,
+                        copyright: site.copyright,
+                        viewport: site.viewport,
+                        category: site.category
+                    }
+                })
+            } else {
+                let newWebsite = new Website(site);
+                await newWebsite.save();
+            }
+        }).catch(async function (err) {
 
+            storeErr.appendFile(err);
+        });
+    }
+}
 // The image insert function
 async function bulkInsertImages(images) {
     let processed = 0;
     for (let i = 0; i < images.length; i++) {
         // Checks if the job is done
         if (processed > images.length)
-            return true;
+            return;
         else {
             let image = images[i];
             // Waits and finds the image
@@ -20,9 +51,8 @@ async function bulkInsertImages(images) {
             }).then(async function (product) {
                 // Checks if the image exists, and performs the operation
                 if (product) {
-                    // TODO: Modify the operator so the ID will be given at query or only the default mongoose object id.
                     await Image.updateOne({
-                        src: image.src
+                        _id: product._id
                     }, {
                         $set: {
                             keywords: image.keywords
@@ -44,18 +74,6 @@ async function bulkInsertImages(images) {
             });
         }
     }
-    /*
-    let exists = await Image.findOne({
-        src: image.src
-    });
-    // Checks if it exists
-    if(exists) {
-
-    } else {
-        let imaged = new Image(image);
-        await imaged.save();
-    }
-    */
 }
 
-module.exports = { bulkInsertImages };
+module.exports = { bulkInsertImages, insertSite };
