@@ -6,7 +6,9 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
+    "follow-redirects": "^1.8.1",
     "keyword-extractor": "^0.0.17",
-    "mongoose": "^5.6.12"
+    "mongoose": "^5.6.12",
+    "sharp": "^0.23.0"
   }
 }

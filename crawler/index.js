@@ -2,37 +2,45 @@
 const express        = require("express");
 const mongoose       = require("mongoose");
 // The models
-const Queryque = require("./models/queryque");
+const Queryque       = require("./models/queryque");
 // The src
-const crawl = require("./src/crawl");
+const crawl          = require("./src/crawl");
 // Connects mongoose
 mongoose.connect("mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb", {
    useNewUrlParser: true,
    dbName: "fannst_index"
 });
+
 // Defines some basic variables
-let anchorsArray = ["localhost/home"]; // Define the start if required
+let anchorsArray = ["www.xhamster.com"]; // Define the start if required
 // Starts crawling
 function round() {
    if(anchorsArray.length >= 1) {
-      let url = anchorsArray[0];
+      let randomAnchorIndex = Math.floor(Math.random() * anchorsArray.length);
+      let url = anchorsArray[randomAnchorIndex];
       fancyLog(`Processing: ${url}`);
-      crawl(url, function(status, anchors) {
+      crawl(url, function (status, anchors) {
          if(status) {
+            fancyLog(`Processed: ${url}, links: ${anchors.length}`);
             // Sets the anchors array, and the new index
-            anchorsArray.concat(anchors);
+            anchors.forEach(function (anchor) {
+               anchorsArray.push(anchor);
+            });
             // Does the new round
-            anchorsArray.splice(0, 1);
-            round();
+            anchorsArray.splice(randomAnchorIndex, 1);
+            setTimeout(function () {
+               round();
+            }, 500)
          } else {
             fancyLog(`Url could not be used: ${url}`);
-            anchorsArray.splice(0, 1);
-            round();
+            anchorsArray.splice(randomAnchorIndex, 1);
+            setTimeout(function () {
+               round();
+            }, 500)
          }
       });
    } else {
       fancyLog("Crawl complete.");
-      mongoose.disconnect();
    }
 }
 

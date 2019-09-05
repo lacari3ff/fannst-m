@@ -1,7 +1,8 @@
 // The modules
 const https     = require("https");
-const http      = require("http");
-const urlp      = require("url")
+// const http      = require("http");
+const urlp      = require("url");
+const http        = require('follow-redirects').http;
 // The source files
 const storeErr  = require("./store-err");
 // The functions
@@ -10,7 +11,7 @@ function get(url, cb) {
     let siteType = getSiteType(url);
     // Checks the request type
     if (siteType === "https") {
-        getHTTPS(url, "", function(result) {
+        getHTTPS(url, "",function(result) {
             if(result) cb(result, url);
             else cb(false, null)
         });
@@ -25,7 +26,7 @@ function get(url, cb) {
                 if(result) cb(result, `https://${url}`);
                 else cb(false, null);
             } else {
-                getHTTP(url, "http://",function(result) {
+                getHTTP(url, "http://", function(result) {
                     if(result) cb(result, `http://${url}`);
                     else cb(false, null);
                 });
@@ -37,6 +38,7 @@ function get(url, cb) {
 function getHTTPS(url, before, cb) {
     let request = https.get(createConfigObject(url, 5000, 443, before), function (res) {
         let body = "";
+        // Checks for binary usage
         // DATA data listener
         res.on("data", function (chunk) {
             body += chunk;

@@ -1,11 +1,15 @@
 // Modules
 const mongoose      = require("mongoose");
 const crypto        = require("crypto");
+const fs            = require("fs");
+const path          = require("path");
 // The models
 const Website       = require("../models/website");
 const Image         = require("../models/image");
 // the Src
 const storeErr      = require("../src/store-err");
+// Constants
+const __ICONDIR = `${__dirname}/../../server/public/auto/icons`;
 // The website insert function
 async function insertSite(site) {
     if(site.url !== null && site.url !== "") {
@@ -13,25 +17,30 @@ async function insertSite(site) {
             url: site.url
         }).then(async function (product) {
             if(product) {
-                Website.updateOne({
-                    _id: product._id
-                }, {
-                    $set: {
-                        title: site.title,
-                        description: site.description,
-                        keywords: site.keywords,
-                        author: site.author,
-                        copyright: site.copyright,
-                        viewport: site.viewport,
-                        category: site.category
+                fs.unlink(path.resolve(`${__ICONDIR}/${product.icon}`), function(err) {
+                    if(!err) {
+                        Website.updateOne({
+                            _id: product._id
+                        }, {
+                            $set: {
+                                title: site.title,
+                                description: site.description,
+                                keywords: site.keywords,
+                                author: site.author,
+                                copyright: site.copyright,
+                                viewport: site.viewport,
+                                category: site.category,
+                                rank: site.rank,
+                                icon: site.icon
+                            }
+                        })
                     }
-                })
+                });
             } else {
                 let newWebsite = new Website(site);
                 await newWebsite.save();
             }
         }).catch(async function (err) {
-
             storeErr.appendFile(err);
         });
     }

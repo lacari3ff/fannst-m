@@ -11,7 +11,9 @@ const websiteSchema = Schema({
     viewport: String,
     url: String,
     clicks: Number,
-    category: Number
+    category: Number,
+    rank: Number,
+    icon: String
 });
 // Exports the model
 module.exports = mongoose.model("Website", websiteSchema);
