@@ -47,3 +47,8 @@
 16-53-0: Error: connect ECONNREFUSED 127.0.0.1:443
 16-53-30: Error: connect ECONNREFUSED 127.0.0.1:443
 16-58-47: Error: connect ECONNREFUSED 127.0.0.1:443
+20-49-3: TypeError: images.forEach is not a function
+20-49-12: TypeError: images.forEach is not a function
+20-49-34: TypeError: images.forEach is not a function
+20-49-42: TypeError: images.forEach is not a function
+20-51-42: TypeError: this.attr is not a function
