@@ -78,12 +78,17 @@ function icon (url, cb) {
 }
 // The url type function
 function getSiteType(url) {
-    if (url.includes("https://")) {
-        return "https";
-    } else if (url.includes("http://")) {
-        return "http"
+    if(url) {
+        if (url.includes("https://")) {
+            return "https";
+        } else if (url.includes("http://")) {
+            return "http"
+        } else {
+            return "none"
+        }
     } else {
-        return "none"
+
+        return "none";
     }
 }
 // Processes the file

@@ -12,7 +12,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb", {
 });
 
 // Defines some basic variables
-let anchorsArray = ["www.xnxx.com"]; // Define the start if required
+let anchorsArray = ["nos.nl"]; // Define the start if required
 // Starts crawling
 function round() {
    if(anchorsArray.length >= 1) {
@@ -30,13 +30,13 @@ function round() {
             anchorsArray.splice(randomAnchorIndex, 1);
             setTimeout(function () {
                round();
-            }, 500)
+            }, 100)
          } else {
             fancyLog(`Url could not be used: ${url}`);
             anchorsArray.splice(randomAnchorIndex, 1);
             setTimeout(function () {
                round();
-            }, 500)
+            }, 100)
          }
       });
    } else {
@@ -61,7 +61,7 @@ function intoLog(message) {
    console.log(generateCharstring("=", 64));
    console.log("\n\n");
 }
-
+// Generates the character string
 function generateCharstring(char, length) {
    let out = "";
    for(let i = 0; i < length; i++) {
@@ -69,6 +69,5 @@ function generateCharstring(char, length) {
    }
    return out;
 }
-
 intoLog("LukeCrawler booting.... Please be patient.\nThe crawling will start as soon as everything is initialized.");
 round();

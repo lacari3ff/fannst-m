@@ -31,7 +31,11 @@ async function insertSite(site) {
                                 viewport: site.viewport,
                                 category: site.category,
                                 rank: site.rank,
-                                icon: site.icon
+                                icon: site.icon,
+                                ismain: site.ismain,
+                                sublinks: site.sublinks,
+                                domain: site.domain,
+                                lang: site.lang
                             }
                         })
                     }

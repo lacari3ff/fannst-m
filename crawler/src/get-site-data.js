@@ -3,6 +3,7 @@ const cheerio           = require("cheerio");
 const urlp              = require("url");
 const keywordExtractor  = require("keyword-extractor");
 // The source files
+const request           = require("./request");
 const storeErr          = require("./store-err");
 // The image parse function
 function parseImages (html, url, keywords, cb) {
@@ -32,7 +33,18 @@ function parseImages (html, url, keywords, cb) {
 function parseHTML (html, url, cb) {
     // Catches errors
     try {
+        // The uri
+        let urld = urlp.parse(url, true);
+        // Loads the html
         let $ = cheerio.load(html);
+        // Gets the Links
+        let anchorsRaw = $("a");
+        let anchors = [];
+        for (let i = 0; i < anchorsRaw.length; i++) {
+            let anchor = anchorsRaw[i].attribs.href;
+            if(anchor !== undefined && anchor !== "")
+                anchors.push(correctSource(anchor, url));
+        }
         // Gets the values
         let title = $("title").text();
         let description = $('meta[name="description"]').attr("content");
@@ -41,40 +53,42 @@ function parseHTML (html, url, cb) {
         let viewport = $('meta[name="viewport"]').attr("content");
         let initialKeywords = $('meta[name="keywords"]').attr("content");
         let icon = $('link[rel="icon"]').attr("href");
-        console.log(icon);
+        let ismain = checkIfSiteIsMain(urld.pathname);
+        let domain = urld.hostname;
         let keywords = generateKeywordTest(title ? title : "", description ? description : "", initialKeywords ? initialKeywords : "");
-        // Checks if the values are set, and generates object
-        let websiteObject = {
-            title: title ? title.split("\n").join("") : "",
-            description: description ? description : "",
-            keywords: keywordExtractor.extract(keywords, {
-                language: "english",
-                remove_digits: true,
-                return_changed_case: true,
-                remove_duplicates: true
-            }).slice(0, 12),
-            author: author ? author.split("\n").join("") : "",
-            copyright: copyright ? copyright.split("\n").join("") : "",
-            viewport: viewport ? viewport : "",
-            url: url,
-            clicks: 0,
-            icon: icon ? correctSource(icon, url) : ""
-        };
-        // Gets the Links
-        let anchorsRaw = $("a");
-        let anchors = [];
-        for(let i = 0; i < anchorsRaw.length; i++) {
-            let anchor = anchorsRaw[i].attribs.href;
-            if(anchor !== undefined && anchor !== "")
-                anchors.push(correctSource(anchor, url));
-        }
-        // Appends a rank to the object
-        getSiteQuality(websiteObject, function(rank) {
-            websiteObject.rank = rank;
-            // Returns the website object
-            cb(websiteObject, anchors);
-        });
+        let lang = $('html').attr("lang");
+        // Generates the sub links
+        fetchsublinks(anchors, ismain, domain, function(sublinks) {
+            // Checks if the values are set, and generates object
+            let websiteObject = {
+                title: title ? title.split("\n").join("") : "",
+                description: description ? description : "",
+                keywords: keywordExtractor.extract(keywords, {
+                    language: "english",
+                    remove_digits: true,
+                    return_changed_case: true,
+                    remove_duplicates: true
+                }),
+                author: author ? author.split("\n").join("") : "",
+                copyright: copyright ? copyright.split("\n").join("") : "",
+                viewport: viewport ? viewport : "",
+                url: url,
+                clicks: 0,
+                icon: icon ? correctSource(icon, url) : "",
+                ismain: ismain,
+                sublinks: sublinks,
+                domain: urld.hostname,
+                lang: lang ? lang : ""
+            };
+            // Appends a rank to the object
+            getSiteQuality(websiteObject, function(rank) {
+                websiteObject.rank = rank;
+                // Returns the website object
+                cb(websiteObject, anchors);
+            });
+        })
     } catch (e) {
+        console.log(e);
         storeErr.appendFile(e);
         cb(false, null);
     }
@@ -116,6 +130,59 @@ function generateKeywordTest(title, description, initial) {
     result += " ";
     if(description !== "") result += description;
     return result;
+}
+// Checks if site is main
+function checkIfSiteIsMain (path) {
+    if(path === "/") {
+        return true;
+    } else {
+        return false;
+    }
+}
+// Fetch sublinks
+function fetchsublinks(anchors, ismain, domain, cb) {
+    // Checks if it is a main site
+    if(ismain) {
+        if(anchors.length >= 1) {
+            // Simpler for loop
+            let i = 0;
+            let processed = 0;
+            let sublinks = [];
+            function entry () {
+                processed++;
+                // Checks if it should quit or continue
+                if (processed > anchors.length || sublinks.length > 6) {
+                    cb(sublinks)
+                } else {
+                    request.get(anchors[i], function(html, url) {
+                        if (html) {
+                            let sub$ = cheerio.load(html);
+                            let title = sub$("title").text();
+                            let desc = sub$('meta[name="description"]').attr("content");
+                            // Checks if the title is defiend
+                            if(title) {
+                                sublinks.push({
+                                    title: title.split("\n").join(" "),
+                                    url: url,
+                                    desc: desc ? desc : ""
+                                });
+                                entry();
+                            } else {
+                                entry();
+                            }
+                        } else {
+                            entry();
+                        }
+                    })
+                }
+                i++;
+            }
+            entry();
+        } else {
+            cb([]);
+        }
+    } else
+        cb([]);
 }
 // Exports
 module.exports = { parseHTML, parseImages };

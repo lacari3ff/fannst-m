@@ -12,7 +12,12 @@ const websiteSchema = Schema({
     url: String,
     clicks: Number,
     category: Number,
-    icon: String
+    rank: Number,
+    icon: String,
+    sublinks: Array,
+    ismain: Boolean,
+    domain: String,
+    lang: String
 });
 // Exports the model
 module.exports = mongoose.model("Website", websiteSchema);
