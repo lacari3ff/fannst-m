@@ -12,9 +12,9 @@ function generateDate(date) {
     return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
 }
 // Write file function
-async function writeErrFile(name, err) {
+function writeErrFile(name, err) {
     let date = new Date();
-    await fs.appendFileSync(path.resolve(`${__dirname}/../logs/${name}`), `${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}: ${err}\n`);
+    fs.appendFileSync(path.resolve(`${__dirname}/../logs/${name}`), `${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}: ${err}\n`);
 }
 // Exports
 module.exports = { appendFile };
