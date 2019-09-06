@@ -3,9 +3,7 @@ const fs = require("fs");
 const path = require("path");
 // The append file
 function appendFile(err) {
-    writeErrFile(generateDate(new Date()), err).catch(function(err) {
-        console.log(`A error occurred: ${err}`);
-    });
+    writeErrFile(generateDate(new Date()), err);
 }
 // The generate date function
 function generateDate(date) {
@@ -14,7 +12,12 @@ function generateDate(date) {
 // Write file function
 function writeErrFile(name, err) {
     let date = new Date();
-    fs.appendFileSync(path.resolve(`${__dirname}/../logs/${name}`), `${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}: ${err}\n`);
+
+    try {
+        fs.appendFileSync(path.resolve(`${__dirname}/../logs/${name}`), `${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}: ${err}\n`);
+    } catch (err) {
+        console.log(`A error occurred: ${err}`);
+    }
 }
 // Exports
 module.exports = { appendFile };
