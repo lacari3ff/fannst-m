@@ -2,7 +2,7 @@
 const Website = require("../models/website");
 const Image = require("../models/image");
 // The functions
-function search (req, res, next) {
+function defaultsearch (req, res, next) {
     let params = req.params.params;
     if(params) {
         if (params.includes("@website:")) {
@@ -79,5 +79,34 @@ function search (req, res, next) {
             status: false
         });
 }
+// The image search function
+function imagesearch (req, res, next) {
+    let params = req.params.params;
+    if(params) {
+        Image.find({
+            $or: [
+                {
+                    keywords: {
+                        $in: params.toLowerCase()
+                    }
+                },
+                {
+                    url: {
+                        $regex: params.toLocaleLowerCase()
+                    }
+                }
+            ]
+        }).sort({_id: -1}).limit(6).then(function (images) {
+            res.json({
+                status: true,
+                results: websites,
+                images: images
+            })
+        })
+    } else
+        res.json({
+            status: false
+        });
+}
 // Exports
-module.exports = { search };
+module.exports = { defaultsearch, imagesearch };

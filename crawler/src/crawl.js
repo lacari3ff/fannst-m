@@ -7,22 +7,22 @@ const classify          = require("../lib/classify");
 const downloadImage     = require("./download-image");
 // The functions
 function crawl(surl, cb) {
-    request.get(surl,async function (html, url) {
+    request.get(surl,function (html, url) {
         if(html) {
-            getSiteData.parseHTML(html, url, async function (websiteObject, anchors) {
+            getSiteData.parseHTML(html, url, function (websiteObject, anchors) {
                 downloadImage.icon(websiteObject.icon, function(err, icon) {
                     websiteObject.icon = err ? "default" : icon;
                     websiteObject.category = classify.classifySiteCategory(html);
-                    insert.insertSite(websiteObject).then(async function () {
-                        getSiteData.parseImages(html, url, websiteObject.keywords, async function (images) {
-                            insert.bulkInsertImages(images).then(async function() {
+                    insert.insertSite(websiteObject).then(function () {
+                        getSiteData.parseImages(html, url, websiteObject.keywords,  function (images) {
+                            insert.bulkInsertImages(images).then(function() {
                                 cb(true, anchors);
-                            }).catch(async function (e) {
+                            }).catch(function (e) {
                                 storeErr.appendFile(e);
                                 cb(false, anchors);
                             })
                         });
-                    }).catch(async function (e) {
+                    }).catch(function (e) {
                         storeErr.appendFile(e);
                         cb(false, anchors);
                     })

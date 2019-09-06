@@ -96,6 +96,7 @@ async function processIcon(filename, output, cb) {
     await sharp(path.resolve(`${__TMPDIR}/${filename}`))
         .resize(20, 20)
         .toFile(path.resolve(`${__OUTDIR}/${output}`))
+    await fs.unlinkSync(path.resolve(`${__TMPDIR}/${filename}`));
 }
 // Gets the file name
 function getIconFileName (url) {
