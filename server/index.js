@@ -16,7 +16,11 @@ app.use(BodyParser.urlencoded({
     extended: false
 }));
 // The Routes
-const RestSearchRoute = require("./routes/rest-search");
-app.use("/rest/search", RestSearchRoute);
+const SearchRoute       = require("./routes/search-route");
+const WeatherRoute      = require("./routes/weather-route");
+const NewsRoute         = require("./routes/news-route");
+app.use("/rest/search", SearchRoute);
+app.use("/rest/weather", WeatherRoute);
+app.use("/rest/news", NewsRoute);
 // Listens
 app.listen(80);

@@ -1,6 +1,7 @@
 // The models
-const Website = require("../models/website");
-const Image = require("../models/image");
+const Website =             require("../models/search/website");
+const Image =               require("../models/search/image");
+const keywordExtractor =    require("keyword-extractor");
 // The functions
 function defaultsearch (req, res, next) {
     let params = req.params.params;
@@ -37,11 +38,50 @@ function defaultsearch (req, res, next) {
                 })
             })
         } else {
+
+            let keywords = params.split(" ");
+
+            /*
+            let result = [];
+
+            Website.aggregate([
+                {$match: {keywords: {$in: keywords}}},
+                {$unwind: "$keywords"},
+                {$match: {keywords: {$in: keywords}}},
+                {$group: {
+                        _id:{_id:"$_id"},
+                        matches:{$sum:1},
+                        "rank": {$push: "$rank"},
+                        "ismain": {$push: "$ismain"}
+                    }},
+                {$sort:{ismain: 1}}
+            ]).exec(function(err, res) {
+                res.map(a => a._id);
+
+                res.forEach(res => {
+                    Website.findOne({
+                       _id: res._id
+                    }, function(err, res) {
+                        result.push(res);
+                    });
+                })
+            });
+
+            setTimeout(function() {
+                res.json({
+                    status: true,
+                    results: result,
+                    images: []
+                })
+            }, 1200)
+*/
+
+
             Website.find({
                 $or: [
                     {
                         keywords: {
-                            $in: params.toLowerCase()
+                            $in: keywords
                         },
                         lang: "nl"
                     },
@@ -51,7 +91,7 @@ function defaultsearch (req, res, next) {
                         }
                     }
                 ]
-            }).then(function (websites) {
+            }).sort({ismain: -1, rank: -1}).then(function (websites) {
                 Image.find({
                     $or: [
                         {

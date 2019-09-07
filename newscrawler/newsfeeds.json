@@ -1,0 +1,102 @@
+[
+  {
+    "country": "uk",
+    "normal": [
+      {
+        "name": "BBC News",
+        "rss_url": "https://www.feedspot.com/infiniterss.php?q=site:http%3A%2F%2Ffeeds.bbci.co.uk%2Fnews%2Fuk%2Frss.xml"
+      },
+      {
+        "name": "The Guardian",
+        "rss_url": "https://www.feedspot.com/infiniterss.php?q=site:https%3A%2F%2Fwww.theguardian.com%2Fuk%2Frss"
+      },
+      {
+        "name": "Daily Mail Online",
+        "rss_url": "https://www.feedspot.com/infiniterss.php?q=site:http%3A%2F%2Fwww.dailymail.co.uk%2Fhome%2Findex.rss"
+      },
+      {
+        "name": "The Telegraph",
+        "rss_url": "https://www.feedspot.com/infiniterss.php?q=site:http%3A%2F%2Fwww.telegraph.co.uk%2Frss"
+      }
+    ]
+  },
+  {
+    "country": "nl",
+    "normal": [
+      {
+        "name": "NRC Handelsblad",
+        "rss_url": "https://www.nrc.nl/rss/#"
+      },
+      {
+        "name": "Telegraaf",
+        "rss_url": "https://www.telegraaf.nl/rss"
+      },
+      {
+        "name": "NOS Nieuws",
+        "rss_url": "http://feeds.nos.nl/nosjournaal"
+      },
+      {
+        "name": "Algemeen Dagblad",
+        "rss_url": "https://www.ad.nl/home/rss.xml"
+      }
+    ],
+    "science": [
+      {
+        "name": "De Volkskrant",
+        "rss_url": "https://www.volkskrant.nl/wetenschap/rss.xml"
+      },
+      {
+        "name": "NRC Handelsblad",
+        "rss_url": "https://www.nrc.nl/index/wetenschap/"
+      },
+      {
+        "name": "Algemeen Dagblad",
+        "rss_url": "https://www.ad.nl/wetenschap/rss.xml"
+      }
+    ],
+    "business": [
+      {
+        "name": "Telegraaf",
+        "rss_url": "https://www.telegraaf.nl/financieel/nieuws/rss"
+      },
+      {
+        "name": "NRC Handelsblad",
+        "rss_url": "https://www.nrc.nl/sectie/economie/rss/"
+      },
+      {
+        "name": "Algemeen Dagblad",
+        "rss_url": "https://www.ad.nl/economie/rss.xml"
+      },
+      {
+        "name": "Trouw",
+        "rss_url": "https://www.trouw.nl/voorpagina/rss.xml"
+      },
+      {
+        "name": "Financieel Dagblad",
+        "rss_url": "https://fd.nl/beurs/?widget=rssfeed&view=feed&contentId=1678255"
+      },
+      {
+        "name": "Nieuwsblad Transport",
+        "rss_url": "https://www.nieuwsbladtransport.nl/tag/bedrijfsnieuws/feed/"
+      }
+    ],
+    "sports": [
+      {
+        "name": "Telegraaf",
+        "rss_url": "https://www.telegraaf.nl/sport/rss"
+      },
+      {
+        "name": "De Volkskrant",
+        "rss_url": "https://www.volkskrant.nl/sport/rss.xml"
+      },
+      {
+        "name": "NRC Handelsblad",
+        "rss_url": "https://www.nrc.nl/sectie/sport/rss/"
+      },
+      {
+        "name": "NOS",
+        "rss_url": "http://feeds.feedburner.com/nossportalgemeen"
+      }
+    ]
+  }
+]
