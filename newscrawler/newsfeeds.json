@@ -18,7 +18,10 @@
         "name": "The Telegraph",
         "rss_url": "https://www.feedspot.com/infiniterss.php?q=site:http%3A%2F%2Fwww.telegraph.co.uk%2Frss"
       }
-    ]
+    ],
+    "science": [],
+    "business": [],
+    "sports": []
   },
   {
     "country": "nl",
