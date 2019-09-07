@@ -11,7 +11,8 @@ const articleSchema = Schema({
     contentSnippet: String,
     keywords: Array,
     pubName: String,
-    category: String
+    category: String,
+    country: String
 });
 // Exports the model
 module.exports = mongoose.model("Article", articleSchema);
