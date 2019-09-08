@@ -90,9 +90,16 @@ function autocomplete (req, res, next) {
 }
 // Gets the latest
 function getLatest (req, res, next) {
-    if(req.body.category !== undefined) {
+    if(req.body.category !== undefined && req.body.country !== undefined) {
         Article.find({
-            category: req.body.category
+            $and: [
+                {
+                    category: req.body.category
+                },
+                {
+                    country: req.body.country
+                }
+            ]
         }).sort({pubDate: -1}).limit(30).exec(function (err, articles) {
             if (err) {
                 res.json({
