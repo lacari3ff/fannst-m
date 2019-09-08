@@ -21,11 +21,20 @@ app.use("/rest/weather", WeatherRoute);
 app.use("/rest/news", NewsRoute);
 app.get("*", function(req, res, next) {
   let domain = req.hostname;
+  let p = req.path;
 
   switch (domain) {
     case "news.fannst.nl": {
-      res.sendFile(path.resolve(`${__dirname}/views/news/index.html`));
-      break;
+      switch (p) {
+        case "/": {
+          res.redirect(301, "/frontpage");
+          break;
+        }
+        default: {
+          res.sendFile(path.resolve(`${__dirname}/views/news/index.html`));
+          break;
+        }
+      }
     }
     default: {
       res.json({
