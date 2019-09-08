@@ -26,7 +26,7 @@ class History {
     }
 
     static findByRegex (dbo, params, country, cb) {
-        dbo.collection("history").findOne({
+        dbo.collection("history").find({
             $and: [
                 {
                     country: country
@@ -37,7 +37,7 @@ class History {
                     }
                 }
             ]
-        }, function (err, results) {
+        }).limit(12).toArray(function (err, results) {
             cb (err ? false : results);
         });
     }
