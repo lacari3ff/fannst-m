@@ -13,6 +13,6 @@ Router.post("/search", function (req, res, next) {
 });
 Router.post("/autocomplete", function (req, res, next) {
     NewsController.autocomplete(req, res, next);
-})
+});
 // Exports
 module.exports = Router;
