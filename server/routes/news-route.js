@@ -5,7 +5,7 @@ const Router = express.Router();
 // Controllers
 const NewsController = require("../controllers/news-controller");
 // Handles the request
-Router.post("/get-latest/:lang", function (req, res, next) {
+Router.post("/get-latest", function (req, res, next) {
     NewsController.getLatest(req, res, next);
 });
 Router.post("/search", function (req, res, next) {

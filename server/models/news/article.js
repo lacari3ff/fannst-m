@@ -39,16 +39,38 @@ class Article {
     });
   }
 
-  static keywordSearch (dbo, keywords, skip, limit, cb) {
+  static keywordSearch (dbo, keywords, country, skip, limit, cb) {
     dbo.collection("articles").find({
-      keywords: {
-        $in: keywords
-      }
+      $and: [
+        {
+          keywords: {
+            $in: keywords
+          }
+        },
+        {
+          country: country
+        }
+      ]
     }).sort({
       _id: -1
     }).skip(skip).limit(limit).toArray(function (err, articles) {
       cb (err ? false : articles);
     });
+  }
+
+  static getLatest (dbo, country, category, cb) {
+    dbo.collection("articles").find({
+      $and: [
+        {
+          country: country
+        },
+        {
+          category: category
+        }
+      ]
+    }).limit(30).toArray(function (err, articles) {
+      cb(err ? false : articles);
+    })
   }
 }
 // Exports the model

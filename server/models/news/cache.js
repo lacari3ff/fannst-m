@@ -4,6 +4,7 @@ class Cache {
         this.results    = cacheObject.results;
         this.index      = cacheObject.index;
         this.expire     = cacheObject.expire;
+        this.country    = cacheObject.country;
     }
 
     save (dbo, cb) {
@@ -14,12 +15,20 @@ class Cache {
 
     static upsert (dbo, cacheObject, cb) {
         dbo.collection("cache").replaceOne({
-           params: cacheObject.params
+            $and: [
+                {
+                    params: cacheObject.params
+                },
+                {
+                    country: cacheObject.country
+                }
+            ]
         }, {
             params: cacheObject.params,
             results: cacheObject.results,
             index: cacheObject.index,
-            expire: cacheObject.expire
+            expire: cacheObject.expire,
+            country: cacheObject.country
         }, {
             upsert: true
         }, function (err) {
@@ -27,9 +36,16 @@ class Cache {
         });
     }
 
-    static findByParams (dbo, params, cb) {
+    static findByParams (dbo, params, country, cb) {
         dbo.collection("cache").findOne({
-            params: params
+            $and: [
+                {
+                    params: params
+                },
+                {
+                    country: country
+                }
+            ]
         }, function (err, cache) {
             if (err)
                 cb (false);
