@@ -35,6 +35,7 @@ app.get("*", function(req, res, next) {
           break;
         }
       }
+      break;
     }
     default: {
       res.json({
