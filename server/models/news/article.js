@@ -52,7 +52,7 @@ class Article {
         }
       ]
     }).sort({
-      _id: -1
+      pubDate: -1
     }).skip(skip).limit(limit).toArray(function (err, articles) {
       cb (err ? false : articles);
     });
@@ -68,7 +68,7 @@ class Article {
           category: category
         }
       ]
-    }).limit(30).toArray(function (err, articles) {
+    }).sort({pubDate: -1}).limit(30).toArray(function (err, articles) {
       cb(err ? false : articles);
     })
   }
