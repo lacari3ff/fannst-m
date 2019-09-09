@@ -16,9 +16,11 @@ app.use(
 const SearchRoute = require("./routes/search-route");
 const WeatherRoute = require("./routes/weather-route");
 const NewsRoute = require("./routes/news-route");
+const AuthRoute = require("./routes/auth-route");
 app.use("/rest/search", SearchRoute);
 app.use("/rest/weather", WeatherRoute);
 app.use("/rest/news", NewsRoute);
+app.use("/rest/auth", AuthRoute);
 app.get("*", function(req, res, next) {
   let domain = req.hostname;
   let p = req.path;
@@ -32,6 +34,19 @@ app.get("*", function(req, res, next) {
         }
         default: {
           res.sendFile(path.resolve(`${__dirname}/views/news/index.html`));
+          break;
+        }
+      }
+      break;
+    }
+    case "auth.fannst.nl": {
+      switch (p) {
+        case "/": {
+          res.redirect(301, "/signin");
+          break;
+        }
+        default: {
+          res.sendFile(path.resolve(`${__dirname}/views/auth/index.html`));
           break;
         }
       }

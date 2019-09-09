@@ -3,11 +3,11 @@ class User {
         this.firstname  = userObject.firstname;
         this.lastname   = userObject.lastname;
         this.username   = userObject.username;
-        this.password   = userObject.password;
+        this.salt       = userObject.salt;
         this.hash       = userObject.hash;
         this.birthdate  = userObject.birthdate;
         this.phone      = userObject.phone;
-        this.restemail  = userObject.restemail;
+        this.recovery   = userObject.recovery;
         this.gender     = userObject.gender;
         this.hid        = userObject.hid;
         this.desc       = userObject.desc;
