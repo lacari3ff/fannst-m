@@ -37,7 +37,7 @@ class History {
                     }
                 }
             ]
-        }).limit(12).toArray(function (err, results) {
+        }).sort({tatal: -1}).limit(12).toArray(function (err, results) {
             cb (err ? false : results);
         });
     }
