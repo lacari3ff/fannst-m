@@ -15,9 +15,12 @@ dbos.auth(function(res) {
 });
 // The functions
 function getLatestLogs(req, res, next) {
-  verify.verify(req, res, function(user) {
-    res.json({
-      user: user
+  verify.verify(req, res, function(user, log) {
+    Log.find(dbo, user.hid, 0, 30, function(logs) {
+      res.json({
+        status: true,
+        logs: logs
+      });
     });
   });
 }
