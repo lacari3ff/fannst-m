@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const BodyParser = require("body-parser");
 const path = require("path");
+const device = require("express-device");
 // Initializes
 const app = express();
 app.use(express.static("public"));
@@ -21,6 +22,11 @@ app.use("/rest/search", SearchRoute);
 app.use("/rest/weather", WeatherRoute);
 app.use("/rest/news", NewsRoute);
 app.use("/rest/auth", AuthRoute);
+app.use(
+  device.capture({
+    parseUserAgent: true
+  })
+);
 app.get("*", function(req, res, next) {
   let domain = req.hostname;
   let p = req.path;
