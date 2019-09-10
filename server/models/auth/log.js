@@ -11,12 +11,15 @@ class Log {
       },
       logObject.location
     );
-    this.device = Object.assign({
-      type: "",
-      model: "",
-      browser: "",
-      browser_patch: ""
-    });
+    this.device = Object.assign(
+      {
+        type: "",
+        model: "",
+        browser: "",
+        browser_patch: ""
+      },
+      logObject.device
+    );
   }
 
   save(dbo, cb) {
