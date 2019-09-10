@@ -13,6 +13,11 @@ app.use(
     extended: false
   })
 );
+app.use(
+  device.capture({
+    parseUserAgent: true
+  })
+);
 // The Routes
 const SearchRoute = require("./routes/search-route");
 const WeatherRoute = require("./routes/weather-route");
@@ -22,11 +27,6 @@ app.use("/rest/search", SearchRoute);
 app.use("/rest/weather", WeatherRoute);
 app.use("/rest/news", NewsRoute);
 app.use("/rest/auth", AuthRoute);
-app.use(
-  device.capture({
-    parseUserAgent: true
-  })
-);
 app.get("*", function(req, res, next) {
   let domain = req.hostname;
   let p = req.path;
