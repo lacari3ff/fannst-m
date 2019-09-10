@@ -3,11 +3,14 @@ class Log {
     this.ip = logObject.ip;
     this.ua = logObject.ua;
     this.hid = logObject.hid;
+    this.timestamp = logObject.timestamp;
     this.key = logObject.key;
     this.location = Object.assign(
       {
         lat: 0,
-        long: 0
+        long: 0,
+        city: "",
+        country: ""
       },
       logObject.location
     );

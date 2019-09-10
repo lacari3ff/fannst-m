@@ -31,8 +31,11 @@ function signin(req, res, next) {
           key: crypto.randomBytes(128).toString("hex"),
           location: {
             lat: geo.ll[0],
-            long: geo.ll[1]
+            long: geo.ll[1],
+            country: geo.country,
+            city: geo.city
           },
+          timestamp: new Date(),
           device: {
             type: req.device.parser.get_type(),
             model: req.device.parser.get_model(),
