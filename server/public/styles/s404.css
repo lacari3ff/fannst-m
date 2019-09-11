@@ -1,0 +1,62 @@
+body,
+html {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.a404 {
+  max-width: 600px;
+  display: inline-block;
+}
+
+.a404 > img {
+  width: 300px;
+}
+
+.s404 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.s404 > span {
+  padding: 12px;
+}
+
+.s404 > span:nth-child(1) > h1 {
+  font-size: 29px;
+  color: #142b35;
+}
+
+.s404 > span:nth-child(1) > p {
+  color: #142b35;
+  font-size: 15px;
+}
+
+.s404 > span:nth-child(2) {
+  text-align: left;
+  border-left: 3px solid #142b35;
+}
+
+.s404 > span:nth-child(2) > p {
+  font-size: 14px;
+  color: #142b35;
+  margin: 0;
+}
+
+.s404 > span:nth-child(2) > small {
+  margin-bottom: 20px;
+  display: block;
+  margin-top: 4px;
+  color: #676767;
+}
+
+.s404 > span:nth-child(2) > table > tbody > tr > th {
+  font-size: 14px;
+  color: #142b35;
+}
+
+.s404 > span:nth-child(2) > table > tbody > tr > td {
+  font-size: 14px;
+  color: #676767;
+}
