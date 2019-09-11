@@ -6,6 +6,8 @@ const path = require("path");
 const device = require("express-device");
 // Initializes
 const app = express();
+app.set("views", "views");
+app.set("render engine", "ejs");
 app.use(express.static("public"));
 app.use(cors());
 app.use(
@@ -61,8 +63,12 @@ app.get("*", function(req, res, next) {
       break;
     }
     default: {
-      res.json({
-        status: false
+      res.render("404.ejs", {
+        ip: req.headers["x-forwarded-for"] || req.connection.remoteAddress,
+        ua: req.headers["user-agent"],
+        path: req.pathname,
+        domain: req.hostname,
+        url: req.url
       });
       break;
     }
