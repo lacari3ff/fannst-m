@@ -8,5 +8,8 @@ const AccountController = require("../controllers/account-controller");
 Router.post("/get-latest-logs", function(req, res, next) {
   AccountController.getLatestLogs(req, res, next);
 });
+Router.post("/get-full-user", function(req, res, next) {
+  AccountController.getFullUser(req, res, next);
+});
 // Exports
 module.exports = Router;
