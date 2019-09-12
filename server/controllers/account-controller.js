@@ -14,15 +14,29 @@ dbos.auth(function(res) {
   dbo = res;
 });
 // The functions
-function getLatestLogs(req, res, next) {
+function getFullUser(req, res, next) {
   verify.verify(req, res, function(user, log) {
-    Log.find(dbo, user.hid, 0, 30, function(logs) {
+    if(user) {
+      delete user.salt;
+      delete user.hash;
       res.json({
         status: true,
-        logs: logs
+        user: user
       });
-    });
+    }
+  });
+}
+function getLatestLogs(req, res, next) {
+  verify.verify(req, res, function(user, log) {
+    if(user) {
+      Log.find(dbo, user.hid, 0, 30, function(logs) {
+        res.json({
+          status: true,
+          logs: logs
+        });
+      });
+    }
   });
 }
 
-module.exports = { getLatestLogs };
+module.exports = { getLatestLogs, getFullUser };
