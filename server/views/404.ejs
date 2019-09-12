@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Domain or page not found for: <%= url %></title>
+    <link rel="stylesheet" type="text/css" href="/styles/s404.css" />
+  </head>
+  <body>
+    <div class="a404">
+      <img src="/images/404.png" alt="404" />
+      <div class="s404">
+        <span>
+          <h1>404</h1>
+          <p>Page not found!</p>
+        </span>
+        <span>
+          <p>
+            The requested domain in combination with the page was not found on
+            this server.
+          </p>
+          <small>That's all we know.</small>
+          <table>
+            <tr>
+              <th>Domain:</th>
+              <td><%= domain %></td>
+            </tr>
+            <tr>
+              <th>Path:</th>
+              <td><%= path %></td>
+            </tr>
+            <tr>
+              <th>IP:</th>
+              <td><%= ip %></td>
+            </tr>
+            <tr>
+              <th>User agent:</th>
+              <td><%= ua %></td>
+            </tr>
+          </table>
+        </span>
+      </div>
+    </div>
+  </body>
+</html>
