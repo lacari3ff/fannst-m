@@ -45,7 +45,7 @@ function processAttachments(attachments, cb) {
                 let attachment = attachments[i];
                 // The file name
                 let _FILE_NAME = `${_ATTACHMENT_DIR}/${sh.randomString({
-                    type: "cahrs",
+                    type: "chars",
                     length: 12
                 })}-${attachment.filename}`;
                 // Checks the attachment file type
