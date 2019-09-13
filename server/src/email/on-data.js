@@ -42,9 +42,9 @@ function onData(stream, session, callback) {
             } else {
                 processRecipients(body, function(isRecieved) {
                    if (isRecieved)
-                       callback();
+                       return callback();
                    else
-                       callback(new Error("No recipients found, or something else went wrong."));
+                       return callback(new Error("No recipients found, or something else went wrong."));
                 });
             }
         })
@@ -55,6 +55,7 @@ function processRecipients(body, cb) {
     let received = false;
     function entry() {
         if(i >= body.to.value.length) {
+            console.log("done");
             cb(received);
         } else {
             let recipient = body.to.value[i].address;
