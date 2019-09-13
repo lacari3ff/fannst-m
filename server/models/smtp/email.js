@@ -16,6 +16,7 @@ class Email {
         this.hid            = emailObject.hid;
         this.attachments    = emailObject.attachments;
         this.subject        = emailObject.subject;
+        this.date           = emailObject.date;
     }
 
     save(dbo, cb) {

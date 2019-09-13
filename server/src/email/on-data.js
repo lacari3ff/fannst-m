@@ -42,9 +42,9 @@ function onData(stream, session, callback) {
             } else {
                 processRecipients(body, function(isRecieved) {
                    if (isRecieved)
-                       callback(null, "Message queued.");
+                       return callback();
                    else
-                       callback(new Error("No recipients found, or something else went wrong."));
+                       return callback(new Error("No recipients found, or something else went wrong."));
                 });
             }
         })
@@ -75,7 +75,8 @@ function processRecipients(body, cb) {
                                 type: 1,
                                 hid: user.hid,
                                 attachments: attachments,
-                                subject: body.subject
+                                subject: body.subject,
+                                date: body.date
                             };
 
                             // Stores the email
