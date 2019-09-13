@@ -62,7 +62,6 @@ function processRecipients(body, cb) {
         } else {
             let recipient = body.to.value[i].address;
             let arr = recipient.split("@");
-            console.log(arr);
             if(arr[1] === "fannst.nl") {
                 let username = arr[0];
                 User.findByUsername(auth_dbo, username, function(user) {
@@ -88,6 +87,8 @@ function processRecipients(body, cb) {
                             let emaild = new Email(mailObject);
                             emaild.save(dbo, function(err) {
                                 if(err) {
+                                    console.log("could not save database");
+                                    console.log(err);
                                     i++;
                                     entry();
                                 } else {
@@ -98,11 +99,13 @@ function processRecipients(body, cb) {
                             });
                         });
                     } else {
+                        console.log("User not found");
                         i++;
                         entry();
                     }
                 })
             } else {
+                console.log("does not inclide fannst");
                 i++;
                 entry();
             }
