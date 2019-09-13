@@ -55,6 +55,7 @@ function processAttachments(attachments, cb) {
                     // Processes other files
                     fs.writeFile(path.resolve(_ATTACHMENT_DIR + _FILE_NAME), attachment.content, function(err) {
                         if(err) {
+                            console.log(err);
                             processed.push({
                                 contentType: attachment.contentType,
                                 filename: attachment.filename,
