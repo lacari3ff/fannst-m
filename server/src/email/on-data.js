@@ -50,7 +50,7 @@ function processRecipients(body, cb) {
     let received = false;
     function entry() {
         if(i >= body.to.value.length) {
-            cb(recieved);
+            cb(received);
         } else {
             let recipient = body.to.value[i].address;
             let arr = recipient.split("@");
