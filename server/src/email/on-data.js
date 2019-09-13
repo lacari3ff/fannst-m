@@ -74,7 +74,8 @@ function processRecipients(body, cb) {
                                 to: body.to,
                                 type: 1,
                                 hid: user.hid,
-                                attachments: attachments
+                                attachments: attachments,
+                                subject: body.subject
                             };
 
                             // Stores the email
