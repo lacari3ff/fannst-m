@@ -37,6 +37,7 @@ function onData(stream, session, callback) {
     // On the end of the data stream
     stream.on("end", function() {
         mailparser(body, function(err, body) {
+            console.log(body);
             if(session.user) {
                 // Means a email is being send
             } else {
@@ -60,7 +61,6 @@ function processRecipients(body, cb) {
             cb(received);
         } else {
             let recipient = body.to.value[i].address;
-            console.log(recipient);
             let arr = recipient.split("@");
             if(arr[1] === "fannst.nl") {
                 let username = arr[0];
