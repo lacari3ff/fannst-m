@@ -54,6 +54,7 @@ function processAttachments(attachments, cb) {
                     // Processes the images
                     jimp.read(path.resolve(_ATTACHMENT_DIR + "/" + _FILE_NAME), function(err, image) {
                             if(err) {
+                                console.log(err);
                                 processed.push({
                                     contentType: attachment.contentType,
                                     filename: attachment.filename,
