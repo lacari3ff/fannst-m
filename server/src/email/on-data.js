@@ -57,6 +57,7 @@ function processRecipients(body, cb) {
             if(arr[1] === "fannst.nl") {
                 let username = arr[0];
                 User.findByUsername(dbo, username, function(user) {
+                    console.log(user, arr);
                     if(user) {
                         processAttachments(body.attachments, function(attachments) {
                             // Creates the mail object
