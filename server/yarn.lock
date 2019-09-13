@@ -15,6 +15,11 @@ accepts@~1.3.7:
     mime-types "~2.1.24"
     negotiator "0.6.2"
 
+addressparser@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/addressparser/-/addressparser-1.0.1.tgz#47afbe1a2a9262191db6838e4fd1d39b40821746"
+  integrity sha1-R6++GiqSYhkdtoOOT9HTm0CCF0Y=
+
 ansi-align@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ansi-align/-/ansi-align-2.0.0.tgz#c36aeccba563b89ceb556f3690f0b1d9e3547f7f"
@@ -119,6 +124,11 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
+base32.js@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/base32.js/-/base32.js-0.1.0.tgz#b582dec693c2f11e893cf064ee6ac5b6131a2202"
+  integrity sha1-tYLexpPC8R6JPPBk7mrFthMaIgI=
+
 base@^0.11.1:
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/base/-/base-0.11.2.tgz#7bde5ced145b6d551a90db87f83c558b4eb48a8f"
@@ -204,6 +214,18 @@ buffer-crc32@~0.2.3:
   version "0.2.13"
   resolved "https://registry.yarnpkg.com/buffer-crc32/-/buffer-crc32-0.2.13.tgz#0d333e3f00eac50aa1454abd30ef8c2a5d9a7242"
   integrity sha1-DTM+PwDqxQqhRUq9MO+MKl2ackI=
+
+buildmail@3.10.0:
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/buildmail/-/buildmail-3.10.0.tgz#c6826d716e7945bb6f6b1434b53985e029a03159"
+  integrity sha1-xoJtcW55RbtvaxQ0tTmF4CmgMVk=
+  dependencies:
+    addressparser "1.0.1"
+    libbase64 "0.1.0"
+    libmime "2.1.0"
+    libqp "1.1.0"
+    nodemailer-fetch "1.6.0"
+    nodemailer-shared "1.1.0"
 
 bytes@3.1.0:
   version "3.1.0"
@@ -498,6 +520,13 @@ device@>=0.3.1:
   integrity sha1-JC1Y85bMmWw44g/kybb03MDvsJA=
   dependencies:
     useragent "*"
+
+dkim-signer@0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/dkim-signer/-/dkim-signer-0.2.2.tgz#aa81ec071eeed3622781baa922044d7800e5f308"
+  integrity sha1-qoHsBx7u02IngbqpIgRNeADl8wg=
+  dependencies:
+    libmime "^2.0.3"
 
 dom-walk@^0.1.0:
   version "0.1.1"
@@ -879,6 +908,16 @@ http-errors@~1.7.2:
     statuses ">= 1.5.0 < 2"
     toidentifier "1.0.0"
 
+iconv-lite@0.4.13:
+  version "0.4.13"
+  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.13.tgz#1f88aba4ab0b1508e8312acc39345f36e992e2f2"
+  integrity sha1-H4irpKsLFQjoMSrMOTRfNumS4vI=
+
+iconv-lite@0.4.15:
+  version "0.4.15"
+  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.15.tgz#fe265a218ac6a57cfe854927e9d04c19825eddeb"
+  integrity sha1-/iZaIYrGpXz+hUkn6dBMGYJe3es=
+
 iconv-lite@0.4.24, iconv-lite@^0.4.13, iconv-lite@^0.4.4:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
@@ -944,6 +983,11 @@ ipaddr.js@1.9.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.9.0.tgz#37df74e430a0e47550fe54a2defe30d8acd95f65"
   integrity sha512-M4Sjn6N/+O6/IXSJseKqHoFc+5FdGJ22sXqnjTpdZweHK64MzEPAyQZyEU3R/KRv2GLoa7nNtg/C2Ev6m7z+eA==
+
+ipv6-normalize@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ipv6-normalize/-/ipv6-normalize-1.0.1.tgz#1b3258290d365fa83239e89907dde4592e7620a8"
+  integrity sha1-GzJYKQ02X6gyOeiZB93kWS52IKg=
 
 is-accessor-descriptor@^0.1.6:
   version "0.1.6"
@@ -1188,6 +1232,34 @@ lazy@^1.0.11:
   resolved "https://registry.yarnpkg.com/lazy/-/lazy-1.0.11.tgz#daa068206282542c088288e975c297c1ae77b690"
   integrity sha1-2qBoIGKCVCwIgojpdcKXwa53tpA=
 
+libbase64@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/libbase64/-/libbase64-0.1.0.tgz#62351a839563ac5ff5bd26f12f60e9830bb751e6"
+  integrity sha1-YjUag5VjrF/1vSbxL2Dpgwu3UeY=
+
+libmime@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/libmime/-/libmime-2.1.0.tgz#51bc76de2283161eb9051c4bc80aed713e4fd1cd"
+  integrity sha1-Ubx23iKDFh65BRxLyArtcT5P0c0=
+  dependencies:
+    iconv-lite "0.4.13"
+    libbase64 "0.1.0"
+    libqp "1.1.0"
+
+libmime@^2.0.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/libmime/-/libmime-2.1.3.tgz#25017ca5ab5a1e98aadbe2725017cf1d48a42a0c"
+  integrity sha1-JQF8pataHpiq2+JyUBfPHUikKgw=
+  dependencies:
+    iconv-lite "0.4.15"
+    libbase64 "0.1.0"
+    libqp "1.1.0"
+
+libqp@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/libqp/-/libqp-1.1.0.tgz#f5e6e06ad74b794fb5b5b66988bf728ef1dedbe8"
+  integrity sha1-9ebgatdLeU+1tbZpiL9yjvHe2+g=
+
 lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.15:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
@@ -1205,6 +1277,14 @@ lru-cache@4.1.x, lru-cache@^4.0.1:
   dependencies:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
+
+mailcomposer@3.12.0:
+  version "3.12.0"
+  resolved "https://registry.yarnpkg.com/mailcomposer/-/mailcomposer-3.12.0.tgz#9c5e1188aa8e1c62ec8b86bd43468102b639e8f9"
+  integrity sha1-nF4RiKqOHGLsi4a9Q0aBArY56Pk=
+  dependencies:
+    buildmail "3.10.0"
+    libmime "2.1.0"
 
 make-dir@^1.0.0:
   version "1.3.0"
@@ -1469,6 +1549,23 @@ node-pre-gyp@^0.12.0:
     rimraf "^2.6.1"
     semver "^5.3.0"
     tar "^4"
+
+nodemailer-fetch@1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/nodemailer-fetch/-/nodemailer-fetch-1.6.0.tgz#79c4908a1c0f5f375b73fe888da9828f6dc963a4"
+  integrity sha1-ecSQihwPXzdbc/6IjamCj23JY6Q=
+
+nodemailer-shared@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/nodemailer-shared/-/nodemailer-shared-1.1.0.tgz#cf5994e2fd268d00f5cf0fa767a08169edb07ec0"
+  integrity sha1-z1mU4v0mjQD1zw+nZ6CBae2wfsA=
+  dependencies:
+    nodemailer-fetch "1.6.0"
+
+nodemailer@5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-5.0.0.tgz#bcb409eca613114e85de42646d0ce7f1fa70b716"
+  integrity sha512-XI4PI5L7GYcJyHkPcHlvPyRrYohNYBNRNbt1tU8PXNU3E1ADJC84a13V0vbL9AM431OP+ETacaGXAF8fGn1JvA==
 
 nodemon@^1.19.2:
   version "1.19.2"
@@ -1896,6 +1993,14 @@ send@0.17.1:
     range-parser "~1.2.1"
     statuses "~1.5.0"
 
+sendmail@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/sendmail/-/sendmail-1.6.1.tgz#6be92fb4be70d1d9ad102030aeb1e737bd512159"
+  integrity sha512-lIhvnjSi5e5jL8wA1GPP6j2QVlx6JOEfmdn0QIfmuJdmXYGmJ375kcOU0NSm/34J+nypm4sa1AXrYE5w3uNIIA==
+  dependencies:
+    dkim-signer "0.2.2"
+    mailcomposer "3.12.0"
+
 serve-static@1.14.1:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/serve-static/-/serve-static-1.14.1.tgz#666e636dc4f010f7ef29970a88a674320898b2f9"
@@ -1952,6 +2057,15 @@ sliced@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/sliced/-/sliced-1.0.1.tgz#0b3a662b5d04c3177b1926bea82b03f837a2ef41"
   integrity sha1-CzpmK10Ewxd7GSa+qCsD+Dei70E=
+
+smtp-server@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/smtp-server/-/smtp-server-3.5.0.tgz#eb2e7bd52f26b4136b9dfc2c9fa0ba70e18cdc81"
+  integrity sha512-7FUg09H1VmqMRlUq/QdkPxn/NK8VCFw7GMU5rdWWDbS00wbLhjRBe3Lme+AamjDSmVoP6e/WqFqsa7jVI+69pg==
+  dependencies:
+    base32.js "0.1.0"
+    ipv6-normalize "1.0.1"
+    nodemailer "5.0.0"
 
 snapdragon-node@^2.0.1:
   version "2.1.1"

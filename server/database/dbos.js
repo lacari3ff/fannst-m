@@ -47,4 +47,4 @@ function smtp(cb) {
     });
 }
 
-module.exports = { news, auth, search, weather };
+module.exports = { news, auth, search, weather, smtp };
