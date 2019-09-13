@@ -7,7 +7,8 @@
 const mailparser    = require("mailparser").simpleParser;
 const fs            = require("fs");
 const path          = require("path");
-const sh        = require("sorthash");
+const sh            = require("sorthash");
+const sharp         = require("sharp");
 // The models
 const Email = require("../../models/smtp/email");
 // The global variables
@@ -50,7 +51,37 @@ function processAttachments(attachments, cb) {
                 })}-${attachment.filename}`;
                 // Checks the attachment file type
                 if(attachment.contentType === "image/jpeg" || attachment.contentType === "image/png" || attachment.contentType === "image/gif") {
-
+                    // Processes the images
+                    sharp(path.resolve(_ATTACHMENT_DIR + "/" + _FILE_NAME))
+                        .resize(180, 120)
+                        .toFile(path.resolve(_ATTACHMENT_DIR + "/" + "small-" + _FILE_NAME ))
+                        .then(function(err) {
+                            if(err) {
+                                processed.push({
+                                    contentType: attachment.contentType,
+                                    filename: attachment.filename,
+                                    formats: {
+                                        small: "small-" + _FILE_NAME,
+                                        raw: _FILE_NAME
+                                    },
+                                    status: false
+                                });
+                                i++;
+                                entry();
+                            } else {
+                                processed.push({
+                                    contentType: attachment.contentType,
+                                    filename: attachment.filename,
+                                    formats: {
+                                        small: "small-" + _FILE_NAME,
+                                        raw: _FILE_NAME
+                                    },
+                                    status: true
+                                });
+                                i++;
+                                entry();
+                            }
+                        })
                 } else {
                     // Processes other files
                     fs.writeFile(path.resolve(_ATTACHMENT_DIR + "/" + _FILE_NAME), attachment.content, function(err) {
@@ -59,7 +90,9 @@ function processAttachments(attachments, cb) {
                             processed.push({
                                 contentType: attachment.contentType,
                                 filename: attachment.filename,
-                                src: null,
+                                formats: {
+                                    raw: _FILE_NAME
+                                },
                                 status: false
                             });
                             i++;
@@ -69,7 +102,9 @@ function processAttachments(attachments, cb) {
                             processed.push({
                                 contentType: attachment.contentType,
                                 filename: attachment.filename,
-                                src: _FILE_NAME,
+                                formats: {
+                                    raw: _FILE_NAME
+                                },
                                 status: true
                             });
                             entry();
