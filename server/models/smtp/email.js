@@ -55,7 +55,7 @@ class Email {
                     type: type
                 }
             ]
-        }).skip(skip).limit(limit).toArray(function(err, emails) {
+        }).sort({_id: -1}).skip(skip).limit(limit).toArray(function(err, emails) {
             cb(err ? false : emails);
         })
     }
