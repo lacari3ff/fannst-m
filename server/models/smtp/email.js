@@ -15,6 +15,7 @@ class Email {
         this.type           = emailObject.type; // 0 Sent, 1 Received, 2 Reply
         this.hid            = emailObject.hid;
         this.attachments    = emailObject.attachments;
+        this.subject        = emailObject.subject;
     }
 
     save(dbo, cb) {
