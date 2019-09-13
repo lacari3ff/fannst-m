@@ -37,7 +37,20 @@ class User {
         });
     }
 
-    static findByUsernameOrPhone (dbo, username, phone, cb) {
+    static findByUsername(dbo, username, cb) {
+        dbo.collection("users").findOne({
+            username: username
+        }, function(err, user) {
+            if (err)
+                cb(false);
+            else if (user)
+                cb(user);
+            else
+                cb(false);
+        });
+    }
+
+    static findByUsernameOrPhone(dbo, username, phone, cb) {
         dbo.collection("users").findOne({
             $or: [
                 {

@@ -8,11 +8,20 @@ const mailparser    = require("mailparser").simpleParser;
 const fs            = require("fs");
 const path          = require("path");
 const sh            = require("sorthash");
-const jimp         = require("jimp");
+const jimp          = require("jimp");
 // The models
-const Email = require("../../models/smtp/email");
+const Email         = require("../../models/smtp/email");
 // The global variables
 let _ATTACHMENT_DIR = "./public/smtp-attachments";
+// The database
+const dbos = require("../../database/dbos");
+let dbo;
+dbos.smtp(function (res) {
+    dbo = res;
+});
+// The models
+const User  = require("../../models/auth/user");
+const Log   = require("../../models/auth/log");
 // The functions
 function onData(stream, session, callback) {
     let body = "";
@@ -26,13 +35,68 @@ function onData(stream, session, callback) {
             if(session.user) {
                 // Means a email is being send
             } else {
-                processAttachments(body.attachments, function(attachments) {
-                   console.log(attachments);
-                   callback(null, "Message queued.");
+                processRecipients(body, function(isRecieved) {
+                   if (isRecieved)
+                       callback(null, "Message queued.");
+                   else
+                       callback(new Error("No recipients found, or something else went wrong."));
                 });
             }
         })
     });
+}
+function processRecipients(body, cb) {
+    let i = 0;
+    let received = false;
+    function entry() {
+        if(i >= body.to.value.length) {
+            cb(recieved);
+        } else {
+            let recipient = body.to.value[i].address;
+            let arr = recipient.split("@");
+            if(arr[1] === "fannst.nl") {
+                let username = arr[0];
+                User.findByUsername(dbo, username, function(user) {
+                    if(user) {
+                        processAttachments(body.attachments, function(attachments) {
+                            // Creates the mail object
+                            let mailObject = {
+                                messageId: body.messageId,
+                                html: body.html,
+                                text: body.text,
+                                headers: body.headers,
+                                from: body.from,
+                                to: body.to,
+                                type: 1,
+                                hid: user.hid,
+                                attachments: attachments
+                            };
+
+                            // Stores the email
+                            let emaild = new Email(mailObject);
+                            emaild.save(dbo, function(err) {
+                                if(err) {
+                                    i++;
+                                    entry();
+                                } else {
+                                    received = true;
+                                    i++;
+                                    entry();
+                                }
+                            });
+                        });
+                    } else {
+                        i++;
+                        entry();
+                    }
+                })
+            } else {
+                i++;
+                entry();
+            }
+        }
+    }
+    entry();
 }
 function processAttachments(attachments, cb) {
     if(attachments.length >= 1) {

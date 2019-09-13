@@ -17,11 +17,9 @@ const server = new SMTPServer({
         onAuth(auth, session, callback);
     },
     onMailFrom(address, session, callback) {
-        console.log(address, session);
         return callback();
     },
     onRcptTo(address, session, callback) {
-        console.log(address, session);
         return callback();
     },
     onData(stream, session, callback) {
