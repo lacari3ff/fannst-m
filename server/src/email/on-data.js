@@ -60,6 +60,7 @@ function processRecipients(body, cb) {
             cb(received);
         } else {
             let recipient = body.to.value[i].address;
+            console.log(recipient);
             let arr = recipient.split("@");
             if(arr[1] === "fannst.nl") {
                 let username = arr[0];
