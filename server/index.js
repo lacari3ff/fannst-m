@@ -25,12 +25,14 @@ const SearchRoute = require("./routes/search-route");
 const WeatherRoute = require("./routes/weather-route");
 const NewsRoute = require("./routes/news-route");
 const AuthRoute = require("./routes/auth-route");
+const FmailRoute = require("./routes/fmail-route");
 const AccountRoute = require("./routes/account-route");
 app.use("/rest/search", SearchRoute);
 app.use("/rest/weather", WeatherRoute);
 app.use("/rest/news", NewsRoute);
 app.use("/rest/auth", AuthRoute);
 app.use("/rest/account", AccountRoute);
+app.use("/rest/fmail", FmailRoute);
 app.get("*", function(req, res, next) {
   let domain = req.hostname;
   let p = req.path;

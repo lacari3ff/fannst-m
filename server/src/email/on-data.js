@@ -9,6 +9,7 @@ const fs            = require("fs");
 const path          = require("path");
 const sh            = require("sorthash");
 const jimp          = require("jimp");
+const sendmail      = require("sendmail");
 // The models
 const Email         = require("../../models/smtp/email");
 // The global variables
@@ -61,7 +62,6 @@ function processRecipients(body, cb) {
             if(arr[1] === "fannst.nl") {
                 let username = arr[0];
                 User.findByUsername(auth_dbo, username, function(user) {
-                    console.log(user, arr);
                     if(user) {
                         processAttachments(body.attachments, function(attachments) {
                             // Creates the mail object
