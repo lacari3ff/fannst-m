@@ -51,39 +51,57 @@ function processAttachments(attachments, cb) {
                 })}-${attachment.filename}`;
                 // Checks the attachment file type
                 if(attachment.contentType === "image/jpeg" || attachment.contentType === "image/png" || attachment.contentType === "image/gif") {
-                    // Processes the images
-                    jimp.read(path.resolve(_ATTACHMENT_DIR + "/" + _FILE_NAME), function(err, image) {
-                            if(err) {
-                                console.log(err);
-                                processed.push({
-                                    contentType: attachment.contentType,
-                                    filename: attachment.filename,
-                                    formats: {
-                                        small: "small-" + _FILE_NAME,
-                                        raw: _FILE_NAME
-                                    },
-                                    status: false
-                                });
-                                i++;
-                                entry();
-                            } else {
-                                image
-                                    .resize(120, 180)
-                                    .quality(60)
-                                    .write(path.resolve(_ATTACHMENT_DIR + "/small-" + _FILE_NAME));
-                                processed.push({
-                                    contentType: attachment.contentType,
-                                    filename: attachment.filename,
-                                    formats: {
-                                        small: "small-" + _FILE_NAME,
-                                        raw: _FILE_NAME
-                                    },
-                                    status: true
-                                });
-                                i++;
-                                entry();
-                            }
-                        })
+                    // Stores the image
+                    // Processes other files
+                    fs.writeFile(path.resolve(_ATTACHMENT_DIR + "/" + _FILE_NAME), attachment.content, function(err) {
+                        console.log(err);
+                        if (err) {
+                            processed.push({
+                                contentType: attachment.contentType,
+                                filename: attachment.filename,
+                                formats: {
+                                    small: "small-" + _FILE_NAME,
+                                    raw: _FILE_NAME
+                                },
+                                status: false
+                            });
+                            i++;
+                            entry();
+                        } else {
+                            // Processes the images
+                            jimp.read(path.resolve(_ATTACHMENT_DIR + "/" + _FILE_NAME), function(err, image) {
+                                if(err) {
+                                    processed.push({
+                                        contentType: attachment.contentType,
+                                        filename: attachment.filename,
+                                        formats: {
+                                            small: "small-" + _FILE_NAME,
+                                            raw: _FILE_NAME
+                                        },
+                                        status: false
+                                    });
+                                    i++;
+                                    entry();
+                                } else {
+                                    image
+                                        .resize(120, 180)
+                                        .quality(60)
+                                        .write(path.resolve(_ATTACHMENT_DIR + "/small-" + _FILE_NAME));
+                                    processed.push({
+                                        contentType: attachment.contentType,
+                                        filename: attachment.filename,
+                                        formats: {
+                                            small: "small-" + _FILE_NAME,
+                                            raw: _FILE_NAME
+                                        },
+                                        status: true
+                                    });
+                                    i++;
+                                    entry();
+                                }
+                            })
+                        }
+                    });
                 } else {
                     // Processes other files
                     fs.writeFile(path.resolve(_ATTACHMENT_DIR + "/" + _FILE_NAME), attachment.content, function(err) {
