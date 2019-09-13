@@ -43,6 +43,21 @@ class Email {
         });
     }
 
+    static findByHid(dbo, hid, skip, limit, type, cb) {
+        dbo.collection("emails").find({
+            $and: [
+                {
+                    hid: hid
+                },
+                {
+                    type: type
+                }
+            ]
+        }).skip(skip).limit(limit).toArray(function(err, emails) {
+            cb(err ? false : emails);
+        })
+    }
+
     static deleteByMessageIdAndHid(dbo, messageId, hid, cb) {
         dbo.collection("emails").deleteOne({
             $and: [

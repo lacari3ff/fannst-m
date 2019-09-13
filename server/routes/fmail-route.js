@@ -8,5 +8,8 @@ const FmailController = require("../controllers/fmail-controller");
 Router.post("/send", function (req, res, next) {
     FmailController.send(req, res, next);
 });
+Router.post("/get-emails", function (req, res, next) {
+    FmailController.getEmails(req, res, next);
+});
 // Exports
 module.exports = Router;

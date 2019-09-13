@@ -1,15 +1,41 @@
 // The sources
-const sendmail = require("../src/send-mail");
-const HTMLtoText = require("html-to-text");
+const sendmail    = require("../src/send-mail");
+const HTMLtoText  = require("html-to-text");
 // The tools
-const verify = require("../tools/verify");
+const verify      = require("../tools/verify");
+// The models
+const Email       = require("../models/smtp/email");
 // Database
-const dbos = require("../database/dbos");
+const dbos        = require("../database/dbos");
 let dbo;
 dbos.smtp(function (res) {
   dbo = res;
 });
 // The functions
+function getEmails(req, res, next) {
+  verify.verify(req, res, function(user) {
+    if(user) {
+      let { skip, limit, type } = req.body;
+      if(
+          skip !== undefined &&
+          limit !== undefined &&
+          type !== undefined
+      ) {
+        Email.findByHid(dbo, user.hid, parseInt(skip), parseInt(limit), parseInt(type), function(emails) {
+          res.json({
+            status: true,
+            emails: emails
+          });
+        });
+      } else {
+        res.json({
+          status: false,
+          error: "Please provide skip and limit."
+        });
+      }
+    }
+  })
+}
 function send(req, res, next) {
   verify.verify(req, res, function(user) {
     if(user) {
@@ -40,4 +66,4 @@ function send(req, res, next) {
   })
 }
 
-module.exports = { send };
+module.exports = { send, getEmails };
