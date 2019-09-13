@@ -21,7 +21,7 @@ class Email {
 
     save(dbo, cb) {
         dbo.collection("emails").insertOne(this, function(err) {
-            cb(!err);
+            cb(err);
         });
     }
 
