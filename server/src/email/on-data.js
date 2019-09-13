@@ -20,7 +20,7 @@ dbos.smtp(function (res) {
     dbo = res;
 });
 let auth_dbo;
-dbos.smtp(function (res) {
+dbos.auth(function (res) {
     auth_dbo = res;
 });
 // The models
