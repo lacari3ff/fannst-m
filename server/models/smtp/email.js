@@ -18,6 +18,7 @@ class Email {
         this.attachments    = emailObject.attachments;
         this.subject        = emailObject.subject;
         this.date           = emailObject.date;
+        this.read           = emailObject.read;
     }
 
     save(dbo, cb) {

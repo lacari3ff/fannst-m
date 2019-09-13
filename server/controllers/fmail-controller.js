@@ -94,5 +94,32 @@ function send(req, res, next) {
     }
   })
 }
+function html(req, res, next) {
+  verify.verifyGET(req, res, function(user) {
+    if(user) {
+      let { id } = req.params;
 
-module.exports = { send, getEmails, fetchMail };
+      if(
+          id !== undefined
+      ) {
+        Email.findById(dbo, id, function(email) {
+          if(email) {
+            res.send(email.html);
+          } else {
+            res.json({
+              status: false,
+              error: "Email does not exist."
+            });
+          }
+        });
+      } else {
+       res.json({
+         status: false,
+         error: "Please enter the ID."
+       });
+      }
+    }
+  })
+}
+
+module.exports = { send, getEmails, fetchMail, html };

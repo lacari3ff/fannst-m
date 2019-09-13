@@ -14,5 +14,8 @@ Router.post("/get-emails", function(req, res, next) {
 Router.post("/fetch-email", function(req, res, next) {
     FmailController.fetchMail(req, res, next);
 });
+Router.get("/html/:id", function(req, res, next) {
+    FmailController.html(req, res, next);
+})
 // Exports
 module.exports = Router;

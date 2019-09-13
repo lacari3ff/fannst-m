@@ -77,7 +77,8 @@ function processRecipients(body, cb) {
                                 hid: user.hid,
                                 attachments: attachments,
                                 subject: body.subject,
-                                date: body.date
+                                date: body.date,
+                                read: false
                             };
 
                             // Stores the email
