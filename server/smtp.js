@@ -20,7 +20,6 @@ const server = new SMTPServer({
         return callback();
     },
     onRcptTo(address, session, callback) {
-        if(address.address.in)
         return callback();
     },
     onData(stream, session, callback) {
