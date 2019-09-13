@@ -53,7 +53,7 @@ function processAttachments(attachments, cb) {
 
                 } else {
                     // Processes other files
-                    fs.writeFile(path.resolve(_ATTACHMENT_DIR + _FILE_NAME), attachment.content, function(err) {
+                    fs.writeFile(path.resolve(_ATTACHMENT_DIR + "/" + _FILE_NAME), attachment.content, function(err) {
                         console.log(err);
                         if(err) {
                             processed.push({
