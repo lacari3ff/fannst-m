@@ -44,7 +44,7 @@ function processAttachments(attachments, cb) {
                 console.log(i);
                 let attachment = attachments[i];
                 // The file name
-                let _FILE_NAME = `${_ATTACHMENT_DIR}/${sh.randomString({
+                let _FILE_NAME = `${sh.randomString({
                     type: "chars",
                     length: 12
                 })}-${attachment.filename}`;
