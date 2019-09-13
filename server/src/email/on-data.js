@@ -11,7 +11,7 @@ const sh        = require("sorthash");
 // The models
 const Email = require("../../models/smtp/email");
 // The global variables
-let _ATTACHMENT_DIR = "../public/smtp-attachments";
+let _ATTACHMENT_DIR = "./public/smtp-attachments";
 // The functions
 function onData(stream, session, callback) {
     let body = "";
