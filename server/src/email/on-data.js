@@ -42,7 +42,7 @@ function processAttachments(attachments, cb) {
                 çb(processed);
             } else {
                 let attachment = attachments[i];
-                console.log(attachment)
+                console.log(attachment.filename)
                 // The file name
                 // let _FILE_NAME = `${_ATTACHMENT_DIR}/${crypto.randomBytes(16)}-${attachment.filename}`;
                 // // Checks the attachment file type
