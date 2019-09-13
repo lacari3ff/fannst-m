@@ -40,11 +40,12 @@ function onData(stream, session, callback) {
             if(session.user) {
                 // Means a email is being send
             } else {
-                processRecipients(body, function(isRecieved) {
-                   if (isRecieved)
-                       return callback();
-                   else
-                       return callback(new Error("No recipients found, or something else went wrong."));
+                processRecipients(body, function(isReceived) {
+                    console.log(isReceived);
+                    if (isReceived)
+                        return callback();
+                    else
+                        return callback(new Error("No recipients found, or something else went wrong."));
                 });
             }
         })
