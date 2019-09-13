@@ -12,6 +12,35 @@ dbos.smtp(function (res) {
   dbo = res;
 });
 // The functions
+function fetchMail(req, res, next) {
+  verify.verify(req, res, function(user) {
+    if(user) {
+      let { id } = req.body;
+      if(
+          id !== undefined
+      ) {
+        Email.findById(dbo, id, function(email) {
+          if(email) {
+            res.json({
+              status: true,
+              email: email
+            });
+          } else {
+            res.json({
+              status: false,
+              error: "Email does not exist."
+            });
+          }
+        })
+      } else {
+        res.json({
+          status: false,
+          error: "Please enter the hid and id."
+        });
+      }
+    }
+  })
+}
 function getEmails(req, res, next) {
   verify.verify(req, res, function(user) {
     if(user) {
@@ -66,4 +95,4 @@ function send(req, res, next) {
   })
 }
 
-module.exports = { send, getEmails };
+module.exports = { send, getEmails, fetchMail };

@@ -25,6 +25,19 @@ class Email {
         });
     }
 
+    static findById(dbo, id, cb) {
+        dbo.collection("emails").findOne({
+            _id: id
+        }, function(err, email) {
+            if(err)
+                cb(false);
+            else if(email)
+                cb(email);
+            else
+                cb(false);
+        });
+    }
+
     static findByMessageIdAndHid(dbo, messageId, hid, cb) {
         dbo.collection("emails").findOne({
             $and: [
