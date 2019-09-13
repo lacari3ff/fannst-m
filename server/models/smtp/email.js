@@ -1,3 +1,4 @@
+const mongodb = require("mongodb");
 /**
  * Author:  Luke Alexander Cornelius Antonius Rieff
  * Project: Fannst Online Services
@@ -27,7 +28,7 @@ class Email {
 
     static findById(dbo, id, cb) {
         dbo.collection("emails").findOne({
-            _id: id
+            _id: mongodb.ObjectID(id)
         }, function(err, email) {
             if(err)
                 cb(false);
