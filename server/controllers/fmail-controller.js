@@ -27,7 +27,7 @@ function send(req, res, next) {
             HTMLtoText.fromString(html),
             function(success) {
               res.send({
-                status: !success
+                status: success
               });
             })
       } else {
