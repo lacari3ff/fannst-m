@@ -37,7 +37,6 @@ function onData(stream, session, callback) {
     // On the end of the data stream
     stream.on("end", function() {
         mailparser(body, function(err, body) {
-            console.log(body);
             if(session.user) {
                 // Means a email is being send
             } else {
@@ -65,6 +64,7 @@ function processRecipients(body, cb) {
             if(arr[1] === "fannst.nl") {
                 let username = arr[0];
                 User.findByUsername(auth_dbo, username, function(user) {
+                    console.log(user);
                     if(user) {
                         processAttachments(body.attachments, function(attachments) {
                             // Creates the mail object
