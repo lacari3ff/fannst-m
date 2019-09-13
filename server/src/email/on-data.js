@@ -3,6 +3,8 @@
  * Project: Fannst Online Services
  * Year:    2019/2020
  */
+// The modules
+const mailparser = require("mailparser").simpleParser;
 // The functions
 function onData(stream, session, callback) {
     let body = "";
@@ -11,9 +13,11 @@ function onData(stream, session, callback) {
         body += chunk;
     });
     // On the end of the data stream
-    stream.on("close", function() {
-       console.log(body);
-       callback(null, "Message queued.");
+    stream.on("end", function() {
+        mailparser(body, function(err, body) {
+            console.log(body);
+            callback(null, "Message queued.");
+        })
     });
 }
 // Exports
