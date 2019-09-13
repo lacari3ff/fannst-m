@@ -14,6 +14,7 @@ class Email {
         this.to             = emailObject.to;
         this.type           = emailObject.type; // 0 Sent, 1 Received, 2 Reply
         this.hid            = emailObject.hid;
+        this.attachments    = emailObject.attachments;
     }
 
     save(dbo, cb) {
@@ -57,3 +58,5 @@ class Email {
         })
     }
 }
+
+module.exports = Email;
