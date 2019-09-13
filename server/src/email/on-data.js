@@ -56,12 +56,13 @@ function processRecipients(body, cb) {
     let received = false;
     function entry() {
         console.log(body.to);
-        if(i > body.to.value.length) {
+        if(i >= body.to.value.length) {
             console.log("done");
             cb(received);
         } else {
             let recipient = body.to.value[i].address;
             let arr = recipient.split("@");
+            console.log(recipient);
             if(arr[1] === "fannst.nl") {
                 let username = arr[0];
                 User.findByUsername(auth_dbo, username, function(user) {
