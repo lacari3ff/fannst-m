@@ -43,9 +43,9 @@ function onData(stream, session, callback) {
                 processRecipients(body, function(isReceived) {
                     console.log(isReceived);
                     if (isReceived)
-                        return callback();
+                        callback(null, "message end");
                     else
-                        return callback(new Error("No recipients found, or something else went wrong."));
+                        callback(new Error("No recipients found, or something else went wrong."));
                 });
             }
         })
