@@ -19,6 +19,10 @@ let dbo;
 dbos.smtp(function (res) {
     dbo = res;
 });
+let auth_dbo;
+dbos.smtp(function (res) {
+    auth_dbo = res;
+});
 // The models
 const User  = require("../../models/auth/user");
 const Log   = require("../../models/auth/log");
@@ -56,7 +60,7 @@ function processRecipients(body, cb) {
             let arr = recipient.split("@");
             if(arr[1] === "fannst.nl") {
                 let username = arr[0];
-                User.findByUsername(dbo, username, function(user) {
+                User.findByUsername(auth_dbo, username, function(user) {
                     console.log(user, arr);
                     if(user) {
                         processAttachments(body.attachments, function(attachments) {
