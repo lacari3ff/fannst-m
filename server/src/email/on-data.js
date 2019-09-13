@@ -42,9 +42,9 @@ function onData(stream, session, callback) {
             } else {
                 processRecipients(body, function(isRecieved) {
                    if (isRecieved)
-                       return callback();
+                       callback();
                    else
-                       return callback(new Error("No recipients found, or something else went wrong."));
+                       callback(new Error("No recipients found, or something else went wrong."));
                 });
             }
         })
