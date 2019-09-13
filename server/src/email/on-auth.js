@@ -4,7 +4,7 @@
  * Year:    2019/2020
  */
 // The database
-const dbos = require("../database/dbos");
+const dbos = require("../../database/dbos");
 let dbo;
 dbos.smtp(function (res) {
     dbo = res;
