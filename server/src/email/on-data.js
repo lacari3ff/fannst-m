@@ -55,6 +55,7 @@ function processRecipients(body, cb) {
     let i = 0;
     let received = false;
     function entry() {
+        console.log(body.to);
         if(i >= body.to.value.length) {
             console.log("done");
             cb(received);
