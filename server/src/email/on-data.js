@@ -39,7 +39,7 @@ function processAttachments(attachments, cb) {
         let i = 0;
         function entry() {
             if(i >= attachments.length) {
-                çb(processed);
+                cb(processed);
             } else {
                 console.log(i);
                 let attachment = attachments[i];
