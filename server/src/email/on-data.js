@@ -8,7 +8,7 @@ const mailparser    = require("mailparser").simpleParser;
 const fs            = require("fs");
 const path          = require("path");
 const sh            = require("sorthash");
-const sharp         = require("sharp");
+const jimp         = require("jimp");
 // The models
 const Email = require("../../models/smtp/email");
 // The global variables
@@ -44,7 +44,7 @@ function processAttachments(attachments, cb) {
             } else {
                 console.log(i);
                 let attachment = attachments[i];
-                // The file name
+                // The file name:wq
                 let _FILE_NAME = `${sh.randomString({
                     type: "chars",
                     length: 12
@@ -52,10 +52,7 @@ function processAttachments(attachments, cb) {
                 // Checks the attachment file type
                 if(attachment.contentType === "image/jpeg" || attachment.contentType === "image/png" || attachment.contentType === "image/gif") {
                     // Processes the images
-                    sharp(path.resolve(_ATTACHMENT_DIR + "/" + _FILE_NAME))
-                        .resize(180, 120)
-                        .toFile(path.resolve(_ATTACHMENT_DIR + "/" + "small-" + _FILE_NAME ))
-                        .then(function(err) {
+                    jimp.read(path.resolve(_ATTACHMENT_DIR + "/" + _FILE_NAME), function(err, image) {
                             if(err) {
                                 processed.push({
                                     contentType: attachment.contentType,
@@ -69,6 +66,10 @@ function processAttachments(attachments, cb) {
                                 i++;
                                 entry();
                             } else {
+                                image
+                                    .resize(120, 180)
+                                    .quality(60)
+                                    .write(path.resolve(_ATTACHMENT_DIR + "/small-" + _FILE_NAME));
                                 processed.push({
                                     contentType: attachment.contentType,
                                     filename: attachment.filename,
