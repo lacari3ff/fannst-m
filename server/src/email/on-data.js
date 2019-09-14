@@ -161,7 +161,7 @@ function processAttachments(attachments, cb) {
                                     entry();
                                 } else {
                                     image
-                                        .resize(120, 180)
+                                        .resize(180, 120)
                                         .quality(60)
                                         .write(path.resolve(_ATTACHMENT_DIR + "/small-" + _FILE_NAME));
                                     processed.push({
