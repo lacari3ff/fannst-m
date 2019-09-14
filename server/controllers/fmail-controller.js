@@ -21,10 +21,26 @@ function fetchMail(req, res, next) {
       ) {
         Email.findById(dbo, id, function(email) {
           if(email) {
-            res.json({
-              status: true,
-              email: email
-            });
+            if(!email.read) {
+              Email.setReadById(dbo, email._id, function(success) {
+                if(success) {
+                  res.json({
+                    status: true,
+                    email: email
+                  });
+                } else {
+                  res.json({
+                    status: false,
+                    error: "Could not set mail read."
+                  });
+                }
+              })
+            } else {
+              res.json({
+                status: true,
+                email: email
+              });
+            }
           } else {
             res.json({
               status: false,
