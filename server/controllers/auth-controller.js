@@ -2,6 +2,7 @@
 const sh = require("sorthash");
 const crypto = require("crypto");
 const geoip = require("geoip-lite");
+const HTMLtoText  = require("html-to-text");
 // The models
 const User = require("../models/auth/user");
 const Log = require("../models/auth/log");
@@ -11,6 +12,8 @@ let dbo;
 dbos.auth(function(res) {
   dbo = res;
 });
+// The src
+const sendmail = require("../src/send-mail");
 // The functions
 function signin(req, res, next) {
   let { username, password } = req.body;
@@ -140,9 +143,17 @@ function signup(req, res, next) {
 
                 userd.save(dbo, function(success) {
                   if (success) {
-                    res.json({
-                      status: true
-                    });
+                    if (userd.recovery !== "" && userd.recovery) {
+                      let html = `
+                      <strong>You are the recovery address for: <a href="mailto:${userd.username}@fannst.nl">${userd.username}@fannst.nl</a></strong>
+                      <p>What does this mean? Well this means that your email can be used to recover the password of: ${userd.firstname}. If this is a mistake please contact <a href="mailto:help.accounts@fannst.nl">help.accounts@fannst.nl</a></p>
+                      `;
+                      sendmail.send("accounts@fannst.nl", userd.recovery, "You have been registered as recovery address for...", html,  HTMLtoText.fromString(html), function(success) {
+                        res.json({
+                          status: true
+                        });
+                      })
+                    }
                   } else {
                     res.json({
                       status: false,

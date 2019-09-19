@@ -74,16 +74,41 @@ function send(req, res, next) {
           subject !== undefined &&
           html !== undefined
       ) {
+        let text = HTMLtoText.fromString(html);
         sendmail.send(
             `${user.firstname} ${user.lastname} <${user.username}@fannst.nl>`,
             req.body.to.split(","),
             subject,
             html,
-            HTMLtoText.fromString(html),
-            function(success) {
-              res.send({
-                status: success
-              });
+            text,
+            function(success, text) {
+              if (success) {
+                let emaild = new Email({
+                  messageId: success.messageId,
+                  html: html,
+                  text: text,
+                  headers: success.headers,
+                  from: user.username + "@fannst.nl",
+                  to: req.body.split(","),
+                  type: 0,
+                  hid: user.hid,
+                  attachments: [],
+                  subject: subject,
+                  date: new Date().toDateString(),
+                  read: false
+                });
+
+                emaild.save(dbo, function (success) {
+                  res.send({
+                    status: success
+                  });
+                })
+              } else {
+                res.send({
+                  status: false,
+                  error: "Could not send the Email."
+                })
+              }
             })
       } else {
         res.json({
