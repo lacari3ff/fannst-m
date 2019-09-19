@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "auth/static/css/main.96493e5c.chunk.css",
-    "main.js": "auth/static/js/main.e260e974.chunk.js",
-    "main.js.map": "auth/static/js/main.e260e974.chunk.js.map",
+    "main.css": "auth/static/css/main.544ffcca.chunk.css",
+    "main.js": "auth/static/js/main.71c27574.chunk.js",
+    "main.js.map": "auth/static/js/main.71c27574.chunk.js.map",
     "runtime~main.js": "auth/static/js/runtime~main.ea249494.js",
     "runtime~main.js.map": "auth/static/js/runtime~main.ea249494.js.map",
-    "static/js/2.edcce6cc.chunk.js": "auth/static/js/2.edcce6cc.chunk.js",
-    "static/js/2.edcce6cc.chunk.js.map": "auth/static/js/2.edcce6cc.chunk.js.map",
+    "static/js/2.e50585f9.chunk.js": "auth/static/js/2.e50585f9.chunk.js",
+    "static/js/2.e50585f9.chunk.js.map": "auth/static/js/2.e50585f9.chunk.js.map",
     "index.html": "auth/index.html",
-    "precache-manifest.ecac83da0babba39809fa3fc59326d94.js": "auth/precache-manifest.ecac83da0babba39809fa3fc59326d94.js",
+    "precache-manifest.780a664415c46ab525cd2f9437097c2d.js": "auth/precache-manifest.780a664415c46ab525cd2f9437097c2d.js",
     "service-worker.js": "auth/service-worker.js",
-    "static/css/main.96493e5c.chunk.css.map": "auth/static/css/main.96493e5c.chunk.css.map",
+    "static/css/main.544ffcca.chunk.css.map": "auth/static/css/main.544ffcca.chunk.css.map",
     "static/media/fannst-regbanner.png": "auth/static/media/fannst-regbanner.18a0cb7a.png"
   }
 }

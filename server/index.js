@@ -37,6 +37,10 @@ app.get("*", function(req, res, next) {
   let domain = req.hostname;
   let p = req.path;
 
+  if(req.headers["x-forwarded-proto"] !== "https") {
+    res.redirect("https://" + req.hostname + req.url);
+  }
+
   switch (domain) {
     case "news.fannst.nl": {
       switch (p) {

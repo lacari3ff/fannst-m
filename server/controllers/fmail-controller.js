@@ -97,15 +97,29 @@ function send(req, res, next) {
             subject,
             html,
             text,
-            function(success, text) {
+            function(success) {
               if (success) {
                 let emaild = new Email({
                   messageId: success.messageId,
                   html: html,
                   text: text,
                   headers: success.headers,
-                  from: user.username + "@fannst.nl",
-                  to: req.body.split(","),
+                  from: {
+                    value: [
+                      {
+                        address: user.username + "@fannst.nl", 
+                        name: user.firstname + " " + user.lastname
+                      }
+                    ]
+                  },
+                  to: {
+                    value: req.body.to.split(",").map(recipient => {
+                      return {
+                        name: "",
+                        address: recipient
+                      }
+                    })
+                  },
                   type: 0,
                   hid: user.hid,
                   attachments: [],
@@ -114,10 +128,17 @@ function send(req, res, next) {
                   read: false
                 });
 
-                emaild.save(dbo, function (success) {
-                  res.send({
-                    status: success
-                  });
+                emaild.save(dbo, function (err) {
+                  if (err) {
+                    res.send({
+                      status: false,
+                      error: "Email sent, but not stored in Fannst database."
+                    });
+                  } else {
+                    res.send({
+                      status: true
+                    });
+                  }
                 })
               } else {
                 res.send({
