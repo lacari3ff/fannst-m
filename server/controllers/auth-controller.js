@@ -2,6 +2,7 @@
 const sh = require("sorthash");
 const crypto = require("crypto");
 const geoip = require("geoip-lite");
+const HTMLtoText  = require("html-to-text");
 // The models
 const User = require("../models/auth/user");
 const Log = require("../models/auth/log");
@@ -11,6 +12,8 @@ let dbo;
 dbos.auth(function(res) {
   dbo = res;
 });
+// The src
+const sendmail = require("../src/send-mail");
 // The functions
 function signin(req, res, next) {
   let { username, password } = req.body;
@@ -18,57 +21,64 @@ function signin(req, res, next) {
   if (username !== undefined && password !== undefined) {
     // Checks if the user already exists
     User.findByUsernameOrPhone(dbo, username, username, function(user) {
-      // Checks the password
-      if (sh.compare(password, user.salt, user.hash)) {
-        // Gets the location
-        let ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
-        let geo = geoip.lookup(ip);
-        // Generates the log
-        let logd = new Log({
-          ip: ip,
-          ua: req.headers["user-agent"],
-          hid: user.hid,
-          key: crypto.randomBytes(128).toString("hex"),
-          location: {
-            lat: geo.ll[0],
-            long: geo.ll[1],
-            country: geo.country,
-            city: geo.city
-          },
-          timestamp: new Date(),
-          device: {
-            type: req.device.parser.get_type(),
-            model: req.device.parser.get_model(),
-            browser: req.device.parser.useragent.family,
-            browser_patch: req.device.parser.useragent.patch
-          }
-        });
+      if(user) {
+        // Checks the password
+        if (sh.compare(password, user.salt, user.hash)) {
+          // Gets the location
+          let ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+          let geo = geoip.lookup(ip);
+          // Generates the log
+          let logd = new Log({
+            ip: ip,
+            ua: req.headers["user-agent"],
+            hid: user.hid,
+            key: crypto.randomBytes(128).toString("hex"),
+            location: {
+              lat: geo.ll[0],
+              long: geo.ll[1],
+              country: geo.country,
+              city: geo.city
+            },
+            timestamp: new Date(),
+            device: {
+              type: req.device.parser.get_type(),
+              model: req.device.parser.get_model(),
+              browser: req.device.parser.useragent.family,
+              browser_patch: req.device.parser.useragent.patch
+            }
+          });
 
-        logd.save(dbo, function(success) {
-          if (success) {
-            res.json({
-              status: true,
-              key: logd.key,
-              hid: logd.hid
-            });
-          } else {
-            res.json({
-              status: false,
-              error: 3
-            });
-          }
-        });
+          logd.save(dbo, function(success) {
+            if (success) {
+              res.json({
+                status: true,
+                key: logd.key,
+                hid: logd.hid
+              });
+            } else {
+              res.json({
+                status: false,
+                error: "Could not store the log to the database."
+              });
+            }
+          });
+        } else {
+          res.json({
+            status: false,
+            error: "Invalid password."
+          });
+        }
       } else {
         res.json({
           status: false,
-          error: 2
+          error: "User does not exist."
         });
       }
     });
   } else {
     res.json({
       status: false,
-      error: 1
+      error: "Please leave no fields empty."
     });
   }
 }
@@ -102,7 +112,7 @@ function signup(req, res, next) {
       if (user) {
         res.json({
           status: false,
-          error: 1
+          error: "Username, or phone already used."
         });
       } else {
         // Checks if the passwords match
@@ -140,13 +150,21 @@ function signup(req, res, next) {
 
                 userd.save(dbo, function(success) {
                   if (success) {
-                    res.json({
-                      status: true
-                    });
+                    if (userd.recovery !== "" && userd.recovery) {
+                      let html = `
+                      <strong>You are the recovery address for: <a href="mailto:${userd.username}@fannst.nl">${userd.username}@fannst.nl</a></strong>
+                      <p>What does this mean? Well this means that your email can be used to recover the password of: ${userd.firstname}. If this is a mistake please contact <a href="mailto:help.accounts@fannst.nl">help.accounts@fannst.nl</a></p>
+                      `;
+                      sendmail.send("accounts@fannst.nl", userd.recovery, "You have been registered as recovery address for...", html, HTMLtoText.fromString(html), function(success) {
+                        res.json({
+                          status: true
+                        });
+                      })
+                    }
                   } else {
                     res.json({
                       status: false,
-                      error: 3
+                      error: "Could not store user to database."
                     });
                   }
                 });
@@ -160,14 +178,15 @@ function signup(req, res, next) {
         } else {
           res.json({
             status: false,
-            error: 2
+            error: "Passwords do not match."
           });
         }
       }
     });
   } else {
     res.json({
-      status: false
+      status: false,
+      error: "Please leave no fields empty."
     });
   }
 }
