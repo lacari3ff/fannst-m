@@ -42,6 +42,19 @@ app.get("*", function(req, res, next) {
   }
 
   switch (domain) {
+    case "email.fannst.nl": {
+      switch (p) {
+        case "/": {
+          res.redirect(301, "/inbox");
+          break;
+        }
+        default: {
+          res.sendFile(path.resolve(`${__dirname}/views/fmail/index.html`));
+          break;
+        }
+      }
+      break;
+    }
     case "news.fannst.nl": {
       switch (p) {
         case "/": {
