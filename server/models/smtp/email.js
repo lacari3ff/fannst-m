@@ -40,6 +40,18 @@ class Email {
         });
     }
 
+    static setReadById(dbo, id, cb) {
+        dbo.collection("emails").updateOne({
+            _id: mongodb.ObjectID(id)
+        }, {
+            $set: {
+                read: true
+            }
+        }, function(err) {
+            cb(!err);
+        });
+    }
+
     static findByMessageIdAndHid(dbo, messageId, hid, cb) {
         dbo.collection("emails").findOne({
             $and: [
